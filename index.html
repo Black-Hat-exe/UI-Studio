@@ -3,10 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- Google Search Console Verification -->
+    <!-- SEO & GSC Verification -->
     <meta name="google-site-verification" content="YSnc9EPjygw2ogr0CrB6_XJC1DkpQQVEHgsUWy3Hh2A" />
-    <title>black-hat-exe CORP. | UI Studio</title>
+    <title>black-hat-exe CORP. | UI Studio v2.5</title>
+    <meta name="description" content="Generate pure CSS3 Glassmorphism, Neumorphism, and Cyber-aesthetic UI components instantly. Free developer tool by black-hat-exe CORP.">
+    <meta name="theme-color" content="#0d1117">
     
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "black-hat-exe UI Studio",
+      "url": "https://black-hat-exe.github.io/UI-Studio/",
+      "author": {
+        "@type": "Person",
+        "name": "Syed Muhammad Ertaza"
+      },
+      "description": "CSS3 Generator for Glassmorphism and Neumorphism UI styles.",
+      "applicationCategory": "DeveloperApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0"
+      }
+    }
+    </script>
+
     <style>
         :root {
             --bg-dark: #0d1117;
@@ -16,344 +38,167 @@
             --border-subtle: rgba(255, 255, 255, 0.1);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
             overflow-x: hidden;
-            max-width: 100vw;
-            padding-top: 80px; /* Accounts for fixed header */
+            width: 100vw;
+            max-width: 100%;
+            padding-top: 90px;
         }
 
         /* --- SMART HEADER --- */
         #main-header {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
+            top: 0; left: 0; width: 100%;
             background: rgba(13, 17, 23, 0.85);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-subtle);
             padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000;
             transition: transform 0.3s ease-in-out;
         }
+        .header-hidden { transform: translateY(-100%); }
+        .logo-container { display: flex; align-items: center; gap: 12px; }
+        .logo-container h2 { font-size: 1.2rem; font-weight: bold; color: #fff; letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 8px;}
+        .fiverr-btn { background: #1dbf73; color: #fff !important; padding: 8px 16px; border-radius: 5px; transition: background 0.2s; }
+        .fiverr-btn:hover { background: #19a463; }
 
-        .header-hidden {
-            transform: translateY(-100%);
+        /* --- HERO --- */
+        .hero { text-align: center; padding: 20px 10px 40px; }
+        .version-badge { 
+            display: inline-block; border: 1px solid var(--accent); color: var(--accent); 
+            padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-family: monospace; margin-bottom: 20px;
         }
+        .hero h1 { font-size: 2.8rem; line-height: 1.2; margin-bottom: 15px; color: #fff; }
+        .hero p { color: #8b949e; max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        /* --- LAYOUT --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .generator-grid { display: flex; gap: 30px; align-items: flex-start; }
+        .controls, .preview-section { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 25px; flex: 1; min-width: 0; }
+        
+        /* --- CONTROLS --- */
+        .section-title { font-size: 1rem; color: #fff; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .btn-sm { background: transparent; border: 1px solid var(--border-subtle); color: var(--text-main); padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem;}
+        
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+        .tab-btn { flex: 1; padding: 10px; background: transparent; border: 1px solid var(--border-subtle); color: var(--text-main); border-radius: 6px; cursor: pointer; transition: all 0.2s; }
+        .tab-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(0, 255, 204, 0.05); }
+
+        .presets { display: flex; gap: 8px; margin-bottom: 25px; flex-wrap: wrap; }
+        .preset-btn { background: rgba(255,255,255,0.05); border: 1px solid transparent; color: #8b949e; padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; transition: 0.2s; }
+        .preset-btn:hover { color: #fff; background: rgba(255,255,255,0.1); }
+
+        .control-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .control-group { display: flex; flex-direction: column; }
+        .control-group label { font-size: 0.85rem; color: #8b949e; margin-bottom: 8px; display: flex; justify-content: space-between; }
+        .control-group label span.val { color: #fff; font-family: monospace; }
+        input[type="range"] { width: 100%; accent-color: var(--accent); }
+        input[type="color"] { width: 100%; height: 30px; border: none; border-radius: 4px; background: none; cursor: pointer; }
+
+        /* --- PREVIEW --- */
+        .preview-canvas { 
+            width: 100%; height: 300px; background: #0d1117; border-radius: 8px; 
+            display: flex; justify-content: center; align-items: center; position: relative;
+            background-image: radial-gradient(circle at 50% 50%, #1a2332 0%, #0d1117 100%);
+            overflow: hidden; margin-bottom: 20px;
         }
-
-        .logo-container h2 {
-            font-size: 1.2rem;
-            color: #fff;
-            letter-spacing: 1px;
+        .preview-canvas::before {
+            content: ''; position: absolute; width: 150px; height: 150px; background: #00ffcc; border-radius: 50%;
+            top: 20%; left: 20%; filter: blur(50px); opacity: 0.2;
         }
-
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            align-items: center;
+        .preview-canvas::after {
+            content: ''; position: absolute; width: 150px; height: 150px; background: #ff00cc; border-radius: 50%;
+            bottom: 20%; right: 20%; filter: blur(50px); opacity: 0.1;
         }
-
-        .fiverr-btn {
-            background: #1dbf73;
-            color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 5px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-        }
-
-        .github-link {
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        /* --- MAIN CONTENT --- */
-        main {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, #fff, #00ffcc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            text-align: center;
-            color: #8b949e;
-            margin-bottom: 40px;
-            max-width: 600px;
+        
+        #element { 
+            width: 200px; height: 200px; border-radius: 16px; z-index: 2; transition: all 0.1s ease;
+            display: flex; justify-content: center; align-items: center; color: #fff; font-weight: bold; font-family: monospace;
         }
 
-        /* --- GENERATOR GRID --- */
-        .generator-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            width: 100%;
-            justify-content: center;
-        }
+        .code-box { background: #010409; padding: 15px; border-radius: 8px; border: 1px solid var(--border-subtle); margin-bottom: 15px; }
+        .code-box pre { margin: 0; color: #7ee787; font-family: monospace; font-size: 0.9rem; white-space: pre-wrap; word-break: break-all; }
+        .btn-full { width: 100%; padding: 12px; background: transparent; border: 1px solid var(--accent); color: var(--accent); border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;}
+        .btn-full:hover { background: rgba(0,255,204,0.1); }
+        .cta-box { margin-top: 15px; background: rgba(29, 191, 115, 0.1); border: 1px solid #1dbf73; padding: 15px; border-radius: 6px; text-align: center; }
+        .cta-box a { color: #1dbf73; text-decoration: none; font-weight: bold; }
 
-        .controls-panel, .preview-panel {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-            padding: 25px;
-            flex: 1 1 400px;
-            max-width: 100%;
-        }
+        /* --- PROJECTS --- */
+        .projects { margin-top: 60px; margin-bottom: 40px;}
+        .projects h3 { border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px; margin-bottom: 20px; }
+        .track { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 15px; scrollbar-width: thin; scrollbar-color: var(--accent) var(--bg-card); }
+        .card { min-width: 280px; background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 20px; border-radius: 8px; text-decoration: none; color: inherit; transition: 0.2s;}
+        .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .card h4 { color: #fff; margin-bottom: 8px; }
+        .card p { font-size: 0.85rem; color: #8b949e; line-height: 1.4; }
+        .badge { display: inline-block; background: rgba(255,165,0,0.1); color: orange; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-bottom: 10px;}
 
-        /* Controls */
-        .control-group {
-            margin-bottom: 20px;
-        }
-        .control-group label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-        }
-        input[type="range"] {
-            width: 100%;
-            accent-color: var(--accent);
-        }
+        /* --- FOOTER --- */
+        footer { border-top: 1px solid var(--border-subtle); padding: 30px 20px; text-align: center; color: #8b949e; margin-top: 40px; }
+        .social-icons { display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
+        .social-icons a { color: #8b949e; text-decoration: none; padding: 8px 16px; border: 1px solid var(--border-subtle); border-radius: 20px; font-size: 0.9rem; transition: 0.2s; }
+        .social-icons a:hover { color: #fff; border-color: #fff; }
 
-        /* Preview */
-        .preview-area {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #238547, #0d4b8a);
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-            position: relative;
-        }
-        #preview-box {
-            width: 150px;
-            height: 150px;
-            border-radius: 15px;
-            transition: all 0.2s ease;
-        }
-
-        .code-output {
-            background: #000;
-            padding: 15px;
-            border-radius: 8px;
-            font-family: monospace;
-            color: #58d18b;
-            white-space: pre-wrap;
-            margin-bottom: 15px;
-        }
-
-        .copy-btn {
-            width: 100%;
-            padding: 12px;
-            background: transparent;
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.2s;
-        }
-        .copy-btn:hover {
-            background: rgba(0, 255, 204, 0.1);
-        }
-
-        /* --- PROJECTS CAROUSEL --- */
-        .projects-section {
-            width: 100%;
-            margin-top: 60px;
-        }
-        .projects-section h3 {
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--border-subtle);
-            padding-bottom: 10px;
-        }
-        .projects-track {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            padding-bottom: 15px;
-            scrollbar-width: thin;
-            scrollbar-color: var(--accent) var(--bg-dark);
-        }
-        .project-card {
-            min-width: 250px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 8px;
-            padding: 20px;
-            text-decoration: none;
-            color: var(--text-main);
-            transition: border-color 0.2s;
-        }
-        .project-card:hover {
-            border-color: var(--accent);
-        }
-        .project-card h4 {
-            color: #fff;
-            margin-bottom: 8px;
-        }
-        .project-card p {
-            font-size: 0.85rem;
-            color: #8b949e;
-        }
-        .badge {
-            display: inline-block;
-            background: rgba(255, 165, 0, 0.2);
-            color: orange;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            margin-bottom: 10px;
-        }
-
-        /* --- COFFEE WIDGET & MODAL --- */
+        /* --- BUY ME A COFFEE WIDGET --- */
         .coffee-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(13, 17, 23, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            color: #fff;
-            padding: 12px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: bold;
-            z-index: 999;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            transition: background 0.3s, border-color 0.3s;
+            position: fixed; bottom: 20px; right: 20px;
+            background: rgba(13, 17, 23, 0.9); border: 1px solid var(--border-subtle); backdrop-filter: blur(10px);
+            color: #fff; padding: 12px 20px; border-radius: 30px; cursor: pointer; font-weight: bold;
+            z-index: 999; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: 0.3s;
         }
-        .coffee-btn:hover { 
-            background: rgba(255, 255, 255, 0.1); 
-            border-color: var(--accent);
-        }
-
-        .coffee-modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        .coffee-modal.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-        .coffee-content {
-            background: #161b22;
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid var(--border-subtle);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-        }
-        .coffee-content h3 { margin-bottom: 10px; }
-        .coffee-content p { font-size: 0.9rem; color: #8b949e; }
+        .coffee-btn:hover { border-color: var(--accent); background: rgba(255, 255, 255, 0.1); }
         
+        .modal {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 2000; opacity: 0; pointer-events: none; transition: 0.3s;
+        }
+        .modal.active { opacity: 1; pointer-events: all; }
+        .modal-content {
+            background: #161b22; padding: 30px; border-radius: 12px; border: 1px solid var(--border-subtle);
+            text-align: center; max-width: 400px; width: 90%;
+        }
         .iban-box {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            font-family: monospace;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            color: var(--accent);
-            border: 1px solid var(--border-subtle);
+            background: #0d1117; padding: 15px; border-radius: 8px; margin: 20px 0;
+            font-family: monospace; font-size: 1.1rem; color: var(--accent); border: 1px solid var(--border-subtle);
+            word-break: break-all;
         }
-        
-        .copy-iban-btn {
-            background: #2ea043;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-            margin-bottom: 15px;
-        }
-        .close-modal {
-            background: transparent;
-            border: none;
-            color: #8b949e;
-            cursor: pointer;
-            text-decoration: underline;
-        }
+        .btn-solid { background: #2ea043; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; margin-bottom: 10px; transition: background 0.2s;}
+        .btn-solid:hover { background: #1dbf73; }
+        .btn-link { background: none; border: none; color: #8b949e; text-decoration: underline; cursor: pointer; font-size: 0.9rem;}
 
-        /* --- MOBILE FIXES --- */
+        /* --- MOBILE RESPONSIVENESS FIXES --- */
+        @media (max-width: 900px) {
+            .generator-grid { flex-direction: column; }
+        }
         @media (max-width: 768px) {
-            #main-header {
-                padding: 12px 15px;
-            }
-            body {
-                padding-top: 65px; /* Tighter spacing for mobile header */
-            }
-            .logo-container h2 {
-                font-size: 1rem;
-            }
-            .nav-links {
-                gap: 12px;
-            }
-            .fiverr-btn {
-                padding: 6px 10px;
-                font-size: 0.8rem;
-            }
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            .controls-panel, .preview-panel {
-                padding: 15px;
-            }
-            .coffee-btn {
-                bottom: 15px;
-                right: 15px;
-                padding: 10px 15px;
-                font-size: 0.9rem;
-            }
+            body { padding-top: 75px; }
+            /* Stack header elements cleanly */
+            #main-header { flex-direction: column; padding: 12px 15px; gap: 12px; }
+            .nav-links { flex-wrap: wrap; justify-content: center; width: 100%; gap: 12px; }
+            .fiverr-btn { width: 100%; justify-content: center; }
+            
+            /* Hide the v2.5 badge on mobile to save vertical space */
+            .version-badge { display: none; }
+            
+            /* Scale down massive heading */
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 0.95rem; }
+            
+            /* Ensure single column controls */
+            .control-grid { grid-template-columns: 1fr; gap: 15px; }
+            .tabs { flex-wrap: wrap; }
+            .presets { justify-content: center; }
+            
+            /* Scale down coffee button */
+            .coffee-btn { bottom: 15px; right: 15px; padding: 10px 15px; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -362,87 +207,181 @@
     <!-- Auto-Hiding Header -->
     <header id="main-header">
         <div class="logo-container">
-            <svg width="24" height="24" viewBox="0 0 100 100">
-                <path d="M50 10 L90 40 L50 90 L10 40 Z" fill="none" stroke="#fff" stroke-width="5"/>
-                <path d="M10 40 L90 40" stroke="#00ffcc" stroke-width="3"/>
+            <!-- 3D Geometric Fedora/Shield SVG -->
+            <svg width="28" height="28" viewBox="0 0 100 100">
+                <defs>
+                    <linearGradient id="silver" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#ffffff"/>
+                        <stop offset="100%" stop-color="#8b949e"/>
+                    </linearGradient>
+                    <linearGradient id="navy" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#1f6feb"/>
+                        <stop offset="100%" stop-color="#0d1117"/>
+                    </linearGradient>
+                </defs>
+                <path d="M50 5 L85 30 L95 50 L50 95 L5 50 L15 30 Z" fill="url(#navy)" stroke="url(#silver)" stroke-width="4"/>
+                <path d="M10 50 L90 50 M30 30 L70 30" stroke="url(#silver)" stroke-width="3"/>
             </svg>
             <h2>black-hat-exe CORP.</h2>
         </div>
         <div class="nav-links">
-            <a href="https://github.com/black-hat-exe" target="_blank" class="github-link">GitHub</a>
-            <a href="https://www.fiverr.com/syed_m_ertaza" target="_blank" class="fiverr-btn">Hire Me</a>
+            <a href="https://github.com/black-hat-exe" target="_blank">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                GitHub
+            </a>
+            <a href="https://www.fiverr.com/syed_m_ertaza" target="_blank" class="fiverr-btn">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19.98 1h-16C2.33 1 1 2.33 1 3.98v16C1 21.67 2.33 23 3.98 23h16c1.65 0 2.98-1.33 2.98-2.98v-16C22.96 2.33 21.63 1 19.98 1zM17.15 15.69c-1.39 0-2.45-1.12-2.45-2.61s1.06-2.61 2.45-2.61c1.37 0 2.44 1.12 2.44 2.61s-1.07 2.61-2.44 2.61zM17.15 11.75c-.71 0-1.23.59-1.23 1.34s.52 1.33 1.23 1.33c.73 0 1.23-.59 1.23-1.33s-.5-1.34-1.23-1.34zM13.43 15.54h-1.23v-5.07h1.23v5.07zM12.82 8.78c-.46 0-.82-.37-.82-.83s.36-.83.82-.83c.47 0 .83.37.83.83s-.36.83-.83.83zM9.46 12.8h-1.5v2.74H6.73v-5.07h2.73c1.07 0 1.94.8 1.94 1.89s-.87 1.9-1.94 1.9h-.6v-1.46h.6c.41 0 .73-.31.73-.72s-.32-.73-.73-.73z"/></svg>
+                Hire Me
+            </a>
         </div>
     </header>
 
-    <main>
+    <div class="container">
         <div class="hero">
-            <h1>Glassmorphism Generator</h1>
-            <p>Customize blur, opacity, and borders in real time. Export clean, hand-crafted CSS3 instantly.</p>
+            <div class="version-badge">&gt;_ black-hat-exe CORP. // UI STUDIO v2.5</div>
+            <h1>Glassmorphism, Neumorphism<br>& Cyber CSS Generator</h1>
+            <p>Customize blur, opacity, glow spread, and dual-shadow depth in real time. Export clean, hand-crafted CSS3 with zero dependencies.</p>
         </div>
 
         <div class="generator-grid">
-            <!-- Controls -->
-            <div class="controls-panel">
-                <div class="control-group">
-                    <label><span>Blur</span> <span id="blur-val">10px</span></label>
-                    <input type="range" id="blur" min="0" max="30" value="10">
+            <!-- Controls Panel -->
+            <div class="controls">
+                <div class="section-title">
+                    <span>⚙️ 10 UX SURFACE CONTROLS</span>
+                    <button class="btn-sm" onclick="applyPreset('default')">Reset Default</button>
                 </div>
-                <div class="control-group">
-                    <label><span>Opacity</span> <span id="opacity-val">0.2</span></label>
-                    <input type="range" id="opacity" min="0" max="1" step="0.05" value="0.2">
+                
+                <label style="font-size: 0.8rem; color:#8b949e; margin-bottom:8px; display:block;">SURFACE MODE</label>
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="setMode('glass', this)">Glassmorphism</button>
+                    <button class="tab-btn" onclick="setMode('neu', this)">Neumorphism</button>
+                    <button class="tab-btn" onclick="setMode('cyber', this)">Cyber Hybrid</button>
                 </div>
-                <div class="control-group">
-                    <label><span>Border Opacity</span> <span id="border-val">0.1</span></label>
-                    <input type="range" id="border" min="0" max="1" step="0.05" value="0.1">
+
+                <label style="font-size: 0.8rem; color:#8b949e; margin-bottom:8px; display:block;">QUICK PRESETS</label>
+                <div class="presets">
+                    <button class="preset-btn" onclick="applyPreset('frost')">Cyber Frost</button>
+                    <button class="preset-btn" onclick="applyPreset('neon')">Neon Term</button>
+                    <button class="preset-btn" onclick="applyPreset('soft')">Soft Neu</button>
+                    <button class="preset-btn" onclick="applyPreset('obsidian')">Obsidian</button>
+                </div>
+
+                <div class="control-grid">
+                    <!-- Glass Controls -->
+                    <div class="control-group">
+                        <label>1. Blur (px) <span class="val" id="val-blur">16</span></label>
+                        <input type="range" id="in-blur" min="0" max="40" value="16" oninput="updateUI()">
+                    </div>
+                    <div class="control-group">
+                        <label>2. Opacity (%) <span class="val" id="val-opac">15</span></label>
+                        <input type="range" id="in-opac" min="0" max="100" value="15" oninput="updateUI()">
+                    </div>
+                    
+                    <!-- Color & Border -->
+                    <div class="control-group">
+                        <label>3. Surface Color <span class="val" id="val-bg">#ffffff</span></label>
+                        <input type="color" id="in-bg" value="#ffffff" oninput="updateUI()">
+                    </div>
+                    <div class="control-group">
+                        <label>4. Border Opacity (%) <span class="val" id="val-bord">20</span></label>
+                        <input type="range" id="in-bord" min="0" max="100" value="20" oninput="updateUI()">
+                    </div>
+
+                    <!-- Shadows -->
+                    <div class="control-group">
+                        <label>5. Shadow Depth (px) <span class="val" id="val-shd-dist">10</span></label>
+                        <input type="range" id="in-shd-dist" min="-30" max="30" value="10" oninput="updateUI()">
+                    </div>
+                    <div class="control-group">
+                        <label>6. Shadow Blur (px) <span class="val" id="val-shd-blur">30</span></label>
+                        <input type="range" id="in-shd-blur" min="0" max="60" value="30" oninput="updateUI()">
+                    </div>
+                    <div class="control-group">
+                        <label>7. Shadow Spread (px) <span class="val" id="val-shd-sprd">0</span></label>
+                        <input type="range" id="in-shd-sprd" min="-20" max="20" value="0" oninput="updateUI()">
+                    </div>
+                    <div class="control-group">
+                        <label>8. Shadow Color <span class="val" id="val-shd-col">#000000</span></label>
+                        <input type="color" id="in-shd-col" value="#000000" oninput="updateUI()">
+                    </div>
+                    <div class="control-group">
+                        <label>9. Shadow Opacity (%) <span class="val" id="val-shd-opac">50</span></label>
+                        <input type="range" id="in-shd-opac" min="0" max="100" value="50" oninput="updateUI()">
+                    </div>
+                    
+                    <!-- Cyber Border -->
+                    <div class="control-group">
+                        <label>10. Glow Intensity (px) <span class="val" id="val-glow">0</span></label>
+                        <input type="range" id="in-glow" min="0" max="30" value="0" oninput="updateUI()">
+                    </div>
                 </div>
             </div>
 
             <!-- Preview & Code -->
-            <div class="preview-panel">
-                <div class="preview-area">
-                    <div id="preview-box"></div>
+            <div class="preview-section">
+                <div class="preview-canvas" id="canvas-bg">
+                    <div id="element">UI STUDIO</div>
                 </div>
-                <div class="code-output" id="css-code"></div>
-                <button class="copy-btn" id="copy-css">Copy CSS</button>
+                
+                <div class="code-box">
+                    <pre id="code-output">/* CSS will appear here */</pre>
+                </div>
+                
+                <button class="btn-full" onclick="copyCode(this)">📋 Copy CSS Code</button>
+
+                <div class="cta-box">
+                    <p style="color: #8b949e; font-size: 0.9rem; margin-bottom: 5px;">Need a complete custom UI coded?</p>
+                    <a href="https://www.fiverr.com/syed_m_ertaza" target="_blank">Hire Me on Fiverr &rarr;</a>
+                </div>
             </div>
         </div>
 
         <!-- Projects Track -->
-        <div class="projects-section">
+        <div class="projects">
             <h3>More by Developer</h3>
-            <div class="projects-track">
-                <a href="https://black-hat-exe.github.io/Portfolio/" target="_blank" class="project-card">
+            <div class="track">
+                <a href="https://black-hat-exe.github.io/Portfolio/" target="_blank" class="card">
                     <h4>Portfolio</h4>
-                    <p>Personal developer portfolio showcasing skills and projects.</p>
+                    <p>Personal developer portfolio showcasing skills, projects, and cyber aesthetics.</p>
                 </a>
-                <a href="https://black-hat-exe.github.io/Cloud-Infrastructure-Dashboard/" target="_blank" class="project-card">
+                <a href="https://black-hat-exe.github.io/Cloud-Infrastructure-Dashboard/" target="_blank" class="card">
                     <h4>Cloud Dashboard</h4>
-                    <p>Interactive data UI cards and real-time system log terminal.</p>
+                    <p>Interactive data UI cards and real-time system log terminal hosted on GitHub.</p>
                 </a>
-                <a href="https://black-hat-exe.github.io/Birthday-wish/#" target="_blank" class="project-card">
+                <a href="https://black-hat-exe.github.io/Birthday-wish/#" target="_blank" class="card">
                     <h4>Birthday Wish</h4>
-                    <p>Dynamic interactive web project with custom animations.</p>
+                    <p>Dynamic interactive web project utilizing CSS animations and pure JS.</p>
                 </a>
-                <div class="project-card">
+                <div class="card">
                     <span class="badge">Coming Soon</span>
                     <h4>PinBack</h4>
-                    <p>Lost & found QR web application by Black Hat Exe Corp.</p>
+                    <p>Lost & found QR web application utilizing verification PINs by Black Hat Exe Corp.</p>
                 </div>
             </div>
         </div>
-    </main>
 
-    <!-- Buy Me A Coffee Button -->
-    <button class="coffee-btn" id="coffee-btn">☕ Buy Me a Coffee</button>
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 black-hat-exe CORP. Designed by Syed Muhammad Ertaza.</p>
+            <div class="social-icons">
+                <a href="https://github.com/black-hat-exe" target="_blank">GitHub</a>
+                <a href="https://www.fiverr.com/syed_m_ertaza" target="_blank">Fiverr</a>
+                <a href="https://www.upwork.com" target="_blank">Upwork</a>
+            </div>
+        </footer>
+    </div>
 
-    <!-- Secure IBAN Modal -->
-    <div class="coffee-modal" id="coffee-modal">
-        <div class="coffee-content">
-            <h3>Support Indie Work</h3>
-            <p>If this tool saved you time, consider fueling the next project via NayaPay transfer.</p>
+    <!-- Buy Me A Coffee Widget -->
+    <button class="coffee-btn" onclick="document.getElementById('coffee-modal').classList.add('active')">☕ Buy Me a Coffee</button>
+
+    <!-- Secure NayaPay Modal -->
+    <div class="modal" id="coffee-modal">
+        <div class="modal-content">
+            <h3 style="color:#fff; margin-bottom:10px;">Support Indie Work</h3>
+            <p style="color:#8b949e; font-size:0.9rem;">If this UI tool saved you time, consider supporting the developer via NayaPay transfer.</p>
             <div class="iban-box" id="iban-text">PK77NAYA1234503361901333</div>
-            <button class="copy-iban-btn" id="copy-iban-btn">Copy IBAN</button>
-            <button class="close-modal" id="close-modal">Close</button>
+            <button class="btn-solid" onclick="copyIban(this)">Copy IBAN</button>
+            <button class="btn-link" onclick="document.getElementById('coffee-modal').classList.remove('active')">Close</button>
         </div>
     </div>
 
@@ -450,10 +389,8 @@
         // --- SMART HEADER SCROLL LOGIC ---
         let lastScroll = 0;
         const header = document.getElementById('main-header');
-        
         window.addEventListener('scroll', () => {
             const currentScroll = window.pageYOffset;
-            // Hide header if scrolling down and past 80px. Show if scrolling up.
             if (currentScroll > lastScroll && currentScroll > 80) {
                 header.classList.add('header-hidden');
             } else {
@@ -462,71 +399,153 @@
             lastScroll = currentScroll;
         });
 
-        // --- CSS GENERATOR LOGIC ---
-        const blurInput = document.getElementById('blur');
-        const opacityInput = document.getElementById('opacity');
-        const borderInput = document.getElementById('border');
-        const previewBox = document.getElementById('preview-box');
-        const codeOutput = document.getElementById('css-code');
+        // --- MODAL CLICK OUTSIDE TO CLOSE ---
+        document.getElementById('coffee-modal').addEventListener('click', (e) => {
+            if(e.target.id === 'coffee-modal') e.target.classList.remove('active');
+        });
 
-        function updateGenerator() {
-            const blur = blurInput.value;
-            const opacity = opacityInput.value;
-            const border = borderInput.value;
-
-            document.getElementById('blur-val').innerText = blur + 'px';
-            document.getElementById('opacity-val').innerText = opacity;
-            document.getElementById('border-val').innerText = border;
-
-            const cssString = `background: rgba(255, 255, 255, ${opacity});\nbackdrop-filter: blur(${blur}px);\n-webkit-backdrop-filter: blur(${blur}px);\nborder: 1px solid rgba(255, 255, 255, ${border});\nborder-radius: 15px;`;
-            
-            previewBox.style.cssText = cssString;
-            codeOutput.innerText = `.glass-card {\n  ${cssString.replace(/\n/g, '\n  ')}\n}`;
+        // --- COPY IBAN LOGIC ---
+        function copyIban(btn) {
+            navigator.clipboard.writeText("PK77NAYA1234503361901333");
+            btn.innerText = "Copied Successfully!";
+            btn.style.background = "#1dbf73";
+            setTimeout(() => { btn.innerText = "Copy IBAN"; btn.style.background = "#2ea043"; }, 2000);
         }
 
-        [blurInput, opacityInput, borderInput].forEach(input => {
-            input.addEventListener('input', updateGenerator);
-        });
-        updateGenerator(); // Init
+        // --- CSS GENERATOR LOGIC ---
+        let currentMode = 'glass';
 
-        // Copy CSS Logic
-        document.getElementById('copy-css').addEventListener('click', (e) => {
-            navigator.clipboard.writeText(codeOutput.innerText);
-            e.target.innerText = 'Copied!';
-            setTimeout(() => e.target.innerText = 'Copy CSS', 2000);
-        });
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) } : null;
+        }
 
-        // --- COFFEE MODAL LOGIC ---
-        const coffeeBtn = document.getElementById('coffee-btn');
-        const coffeeModal = document.getElementById('coffee-modal');
-        const closeModal = document.getElementById('close-modal');
-        const copyIbanBtn = document.getElementById('copy-iban-btn');
-        const ibanText = "PK77NAYA1234503361901333";
-
-        // Open Modal
-        coffeeBtn.addEventListener('click', () => {
-            coffeeModal.classList.add('active');
-        });
-
-        // Close Modal via button or clicking outside
-        closeModal.addEventListener('click', () => coffeeModal.classList.remove('active'));
-        coffeeModal.addEventListener('click', (e) => {
-            if (e.target === coffeeModal) {
-                coffeeModal.classList.remove('active');
+        function setMode(mode, btnElement) {
+            currentMode = mode;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if(btnElement) btnElement.classList.add('active');
+            
+            // Auto adjust some defaults when switching modes
+            if(mode === 'neu') {
+                document.getElementById('in-bg').value = '#1a2332';
+                document.getElementById('in-opac').value = 100;
+                document.getElementById('in-blur').value = 0;
+            } else if (mode === 'glass') {
+                document.getElementById('in-bg').value = '#ffffff';
+                document.getElementById('in-opac').value = 15;
+                document.getElementById('in-blur').value = 16;
             }
-        });
+            updateUI();
+        }
 
-        // Copy IBAN
-        copyIbanBtn.addEventListener('click', () => {
-            navigator.clipboard.writeText(ibanText).then(() => {
-                copyIbanBtn.innerText = "Copied successfully!";
-                copyIbanBtn.style.background = "#1dbf73";
-                setTimeout(() => {
-                    copyIbanBtn.innerText = "Copy IBAN";
-                    copyIbanBtn.style.background = "#2ea043";
-                }, 2000);
-            });
-        });
+        function applyPreset(preset) {
+            const presets = {
+                default: { bg: '#ffffff', opac: 15, blur: 16, bord: 20, dist: 10, sBlur: 30, sSprd: 0, sCol: '#000000', sOpac: 50, glow: 0, mode: 'glass' },
+                frost: { bg: '#ffffff', opac: 5, blur: 24, bord: 30, dist: 15, sBlur: 35, sSprd: 0, sCol: '#000000', sOpac: 40, glow: 0, mode: 'glass' },
+                neon: { bg: '#00ffcc', opac: 10, blur: 10, bord: 40, dist: 0, sBlur: 20, sSprd: 5, sCol: '#00ffcc', sOpac: 60, glow: 15, mode: 'cyber' },
+                soft: { bg: '#161b22', opac: 100, blur: 0, bord: 0, dist: 12, sBlur: 24, sSprd: 0, sCol: '#000000', sOpac: 60, glow: 0, mode: 'neu' },
+                obsidian: { bg: '#000000', opac: 80, blur: 10, bord: 10, dist: 20, sBlur: 40, sSprd: -5, sCol: '#00ffcc', sOpac: 20, glow: 0, mode: 'cyber' }
+            };
+
+            const p = presets[preset];
+            document.getElementById('in-bg').value = p.bg;
+            document.getElementById('in-opac').value = p.opac;
+            document.getElementById('in-blur').value = p.blur;
+            document.getElementById('in-bord').value = p.bord;
+            document.getElementById('in-shd-dist').value = p.dist;
+            document.getElementById('in-shd-blur').value = p.sBlur;
+            document.getElementById('in-shd-sprd').value = p.sSprd;
+            document.getElementById('in-shd-col').value = p.sCol;
+            document.getElementById('in-shd-opac').value = p.sOpac;
+            document.getElementById('in-glow').value = p.glow;
+            
+            const tabs = document.querySelectorAll('.tab-btn');
+            if(p.mode === 'glass') setMode('glass', tabs[0]);
+            else if (p.mode === 'neu') setMode('neu', tabs[1]);
+            else setMode('cyber', tabs[2]);
+        }
+
+        function updateUI() {
+            // Get current values
+            const bg = document.getElementById('in-bg').value;
+            const opac = document.getElementById('in-opac').value / 100;
+            const blur = document.getElementById('in-blur').value;
+            const bord = document.getElementById('in-bord').value / 100;
+            const dist = document.getElementById('in-shd-dist').value;
+            const sBlur = document.getElementById('in-shd-blur').value;
+            const sSprd = document.getElementById('in-shd-sprd').value;
+            const sCol = document.getElementById('in-shd-col').value;
+            const sOpac = document.getElementById('in-shd-opac').value / 100;
+            const glow = document.getElementById('in-glow').value;
+
+            // Update Text Labels
+            document.getElementById('val-bg').innerText = bg;
+            document.getElementById('val-opac').innerText = document.getElementById('in-opac').value;
+            document.getElementById('val-blur').innerText = blur;
+            document.getElementById('val-bord').innerText = document.getElementById('in-bord').value;
+            document.getElementById('val-shd-dist').innerText = dist;
+            document.getElementById('val-shd-blur').innerText = sBlur;
+            document.getElementById('val-shd-sprd').innerText = sSprd;
+            document.getElementById('val-shd-col').innerText = sCol;
+            document.getElementById('val-shd-opac').innerText = document.getElementById('in-shd-opac').value;
+            document.getElementById('val-glow').innerText = glow;
+
+            const el = document.getElementById('element');
+            const rgbBg = hexToRgb(bg);
+            const rgbShd = hexToRgb(sCol);
+
+            let css = `.surface {\n`;
+            
+            // 1. Background
+            css += `  background: rgba(${rgbBg.r}, ${rgbBg.g}, ${rgbBg.b}, ${opac});\n`;
+            el.style.background = `rgba(${rgbBg.r}, ${rgbBg.g}, ${rgbBg.b}, ${opac})`;
+
+            // 2. Backdrop Filter (Glassmorphism)
+            if (blur > 0) {
+                css += `  backdrop-filter: blur(${blur}px);\n  -webkit-backdrop-filter: blur(${blur}px);\n`;
+                el.style.backdropFilter = `blur(${blur}px)`;
+                el.style.webkitBackdropFilter = `blur(${blur}px)`;
+            } else {
+                el.style.backdropFilter = `none`;
+                el.style.webkitBackdropFilter = `none`;
+            }
+
+            // 3. Border
+            if (bord > 0) {
+                css += `  border: 1px solid rgba(255, 255, 255, ${bord});\n`;
+                el.style.border = `1px solid rgba(255, 255, 255, ${bord})`;
+            } else {
+                el.style.border = 'none';
+            }
+
+            // 4. Shadows (Neumorphism / Cyber Glow)
+            let shadowString = '';
+            if (currentMode === 'neu') {
+                shadowString = `${dist}px ${dist}px ${sBlur}px ${sSprd}px rgba(${rgbShd.r}, ${rgbShd.g}, ${rgbShd.b}, ${sOpac}), ` +
+                               `-${dist}px -${dist}px ${sBlur}px ${sSprd}px rgba(255, 255, 255, 0.05)`;
+            } else {
+                shadowString = `${dist}px ${dist}px ${sBlur}px ${sSprd}px rgba(${rgbShd.r}, ${rgbShd.g}, ${rgbShd.b}, ${sOpac})`;
+                if (glow > 0) {
+                    shadowString += `, 0 0 ${glow}px ${sSprd}px rgba(${rgbBg.r}, ${rgbBg.g}, ${rgbBg.b}, ${opac})`;
+                }
+            }
+            
+            css += `  box-shadow: ${shadowString};\n  border-radius: 16px;\n}`;
+            el.style.boxShadow = shadowString;
+
+            // Output to block
+            document.getElementById('code-output').innerText = css;
+        }
+
+        // --- COPY CSS BUTTON LOGIC ---
+        function copyCode(btn) {
+            navigator.clipboard.writeText(document.getElementById('code-output').innerText);
+            btn.innerText = "✔️ Copied Successfully";
+            setTimeout(() => { btn.innerText = "📋 Copy CSS Code"; }, 2000);
+        }
+
+        // Initialize on load
+        updateUI();
     </script>
 </body>
 </html>
