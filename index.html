@@ -2,1825 +2,531 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>black-hat-exe CORP. — UI Studio (Glassmorphism & Neumorphism CSS Generator)</title>
-    <meta name="description" content="Free Glassmorphism, Neumorphism, and Cyber UI CSS Generator by black-hat-exe CORP. (M. Ertaza). Customize blur, opacity, glow spread, and export production-ready CSS.">
-    
-    <!-- ==========================================
-         SEO, JSON-LD & SITE VERIFICATION
-         ========================================== -->
-    <meta name="keywords" content="CSS Generator, Glassmorphism, Neumorphism, Cyber UI, UI Studio, black-hat-exe, M. Ertaza, Frontend Developer, Pakistan, Web Design">
-    <meta name="author" content="Syed Muhammad Ertaza">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="YSnc9EPjygw2ogr0CrB6_XJC1DkpQQVEHgsUWy3Hh2A" />
+    <title>black-hat-exe CORP. | UI Studio</title>
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://black-hat-exe.github.io/UI-Studio/">
-    <meta property="og:title" content="black-hat-exe CORP. — UI Studio">
-    <meta property="og:description" content="Free Glassmorphism, Neumorphism, and Cyber UI CSS Generator. Export hand-crafted, production-ready CSS3.">
-    <meta property="og:image" content="https://black-hat-exe.github.io/UI-Studio/preview-image.jpg">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://black-hat-exe.github.io/UI-Studio/">
-    <meta property="twitter:title" content="black-hat-exe CORP. — UI Studio">
-    <meta property="twitter:description" content="Free Glassmorphism, Neumorphism, and Cyber UI CSS Generator. Export hand-crafted, production-ready CSS3.">
-    
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "black-hat-exe CORP. UI Studio",
-      "url": "https://black-hat-exe.github.io/UI-Studio/",
-      "description": "A comprehensive UI generator for Glassmorphism, Neumorphism, and Cyber aesthetics.",
-      "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "All",
-      "author": {
-        "@type": "Person",
-        "name": "Syed Muhammad Ertaza"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    }
-    </script>
-
-    <!-- Tailwind CDN included for utility support alongside custom CSS Grid/Flexbox architecture -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter & JetBrains Mono -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
     <style>
-        /* ==========================================================================
-           1. CORE DESIGN TOKENS & RESET (BLACK HAT EXE CORP CYBER THEME)
-           ========================================================================== */
         :root {
-            --bg-primary: #070b12;
-            --bg-secondary: #0d1421;
-            --bg-panel: rgba(15, 23, 38, 0.85);
-            --border-subtle: rgba(45, 212, 191, 0.16);
-            --border-bright: rgba(45, 212, 191, 0.45);
-            --accent-cyan: #14b8a6;
-            --accent-neon: #2dd4bf;
-            --accent-blue: #3b82f6;
-            --accent-amber: #f59e0b;
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --radius-lg: 16px;
-            --radius-md: 10px;
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
+            --bg-dark: #0d1117;
+            --bg-card: #161b22;
+            --accent: #00ffcc;
+            --text-main: #c9d1d9;
+            --border-subtle: rgba(255, 255, 255, 0.1);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: var(--bg-primary);
-            background-image: 
-                radial-gradient(circle at 12% 15%, rgba(20, 184, 166, 0.08) 0%, transparent 35%),
-                radial-gradient(circle at 88% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 40%);
+            background-color: var(--bg-dark);
             color: var(--text-main);
-            font-family: var(--font-sans);
-            line-height: 1.6;
-            min-height: 100vh;
             overflow-x: hidden;
             max-width: 100vw;
-            width: 100%;
+            padding-top: 80px; /* Accounts for fixed header */
         }
 
-        /* ==========================================================================
-           2. HEADER & OFFICIAL "black-hat-exe CORP." LOGO STYLING
-           ========================================================================== */
-        .site-header {
-            position: sticky;
+        /* --- SMART HEADER --- */
+        #main-header {
+            position: fixed;
             top: 0;
-            z-index: 100;
-            background: rgba(7, 11, 18, 0.9);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(13, 17, 23, 0.85);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-subtle);
-            padding: 12px 24px;
-        }
-
-        .header-container {
-            max-width: 1320px;
-            margin: 0 auto;
+            padding: 15px 40px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
+            align-items: center;
+            transition: transform 0.3s ease-in-out;
         }
 
-        .brand-wrap {
+        .header-hidden {
+            transform: translateY(-100%);
+        }
+
+        .logo-container {
             display: flex;
             align-items: center;
-            gap: 14px;
-            text-decoration: none;
-            color: var(--text-main);
+            gap: 10px;
         }
 
-        .brand-logo {
-            width: 50px;
-            height: 50px;
-            flex-shrink: 0;
-            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.65));
-            transition: transform 0.25s ease;
-        }
-
-        .brand-wrap:hover .brand-logo {
-            transform: scale(1.05);
-        }
-
-        .brand-text-block {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .brand-title {
-            font-size: 1.25rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            color: #e2e8f0;
-            line-height: 1.05;
-            text-transform: lowercase;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-        }
-
-        .brand-subtitle {
-            font-size: 0.72rem;
-            font-weight: 500;
-            letter-spacing: 0.24em;
-            color: #94a3b8;
-            text-transform: uppercase;
-            margin-top: 3px;
+        .logo-container h2 {
+            font-size: 1.2rem;
+            color: #fff;
+            letter-spacing: 1px;
         }
 
         .nav-links {
             display: flex;
+            gap: 20px;
             align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
         }
 
-        .nav-link {
-            color: var(--text-muted);
+        .fiverr-btn {
+            background: #1dbf73;
+            color: white;
             text-decoration: none;
-            font-size: 0.86rem;
-            font-weight: 500;
-            padding: 8px 14px;
-            border-radius: 8px;
-            border: 1px solid transparent;
-            transition: all 0.2s ease;
-            display: inline-flex;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 0.9rem;
         }
 
-        .nav-link:hover {
-            color: #ffffff;
-            background: rgba(45, 212, 191, 0.08);
-            border-color: var(--border-subtle);
-        }
-
-        .nav-link-fiverr {
-            background: rgba(29, 191, 115, 0.14);
-            color: #ecfdf5;
-            border: 1px solid rgba(29, 191, 115, 0.45);
+        .github-link {
+            color: var(--text-main);
+            text-decoration: none;
             font-weight: 600;
         }
 
-        .nav-link-fiverr:hover {
-            background: rgba(29, 191, 115, 0.26);
-            border-color: #1dbf73;
-            transform: translateY(-1px);
-        }
-
-        /* ==========================================================================
-           3. MAIN LAYOUT & GENERATOR WORKSPACE (2-COLUMN CSS GRID)
-           ========================================================================== */
-        .main-container {
-            max-width: 1320px;
+        /* --- MAIN CONTENT --- */
+        main {
+            padding: 20px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 32px 20px 64px;
-        }
-
-        .hero-banner {
-            text-align: center;
-            margin-bottom: 32px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 8px;
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--accent-neon);
-            background: rgba(20, 184, 166, 0.1);
-            border: 1px solid rgba(45, 212, 191, 0.3);
-            padding: 5px 14px;
-            border-radius: 999px;
-            margin-bottom: 12px;
         }
 
-        .hero-title {
-            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 8px;
-            background: linear-gradient(95deg, #ffffff 0%, #99f6e4 55%, #38bdf8 100%);
+        .hero h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #fff, #00ffcc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            max-width: 650px;
-            margin: 0 auto;
-        }
-
-        .generator-grid {
-            display: grid;
-            grid-template-columns: minmax(280px, 440px) minmax(0, 1fr);
-            gap: 28px;
-            align-items: start;
-            width: 100%;
-            max-width: 100%;
-        }
-
-        @media (max-width: 1024px) {
-            .generator-grid {
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-            }
-            .main-container {
-                padding: 20px 12px 64px;
-            }
-        }
-
-        .panel-card {
-            background: var(--bg-panel);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
-            width: 100%; /* FIX: bounds width to container */
-            max-width: 100%;
-            box-sizing: border-box;
-            overflow: hidden; /* FIX: prevent internal slider blowout */
-        }
-
-        .panel-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 18px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-        }
-
-        .panel-title {
-            font-size: 0.95rem;
-            font-weight: 700;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* ==========================================================================
-           4. LEFT PANEL: MODE TABS, PRESETS & 10 GRANULAR CONTROLS
-           ========================================================================== */
-        .control-group-label {
-            font-size: 0.74rem;
-            font-family: var(--font-mono);
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-            display: block;
-            letter-spacing: 0.05em;
-        }
-
-        .mode-switcher,
-        .preset-switcher,
-        .canvas-switcher {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-
-        .preset-switcher,
-        .canvas-switcher {
-            grid-template-columns: repeat(4, 1fr);
-        }
-
-        .mode-btn,
-        .preset-btn,
-        .toolbar-btn {
-            background: rgba(15, 23, 42, 0.9);
-            color: var(--text-muted);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 8px 4px;
-            border-radius: 8px;
-            font-size: 0.72rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.18s ease;
+        .hero p {
             text-align: center;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            color: #8b949e;
+            margin-bottom: 40px;
+            max-width: 600px;
         }
 
-        .mode-btn:hover,
-        .preset-btn:hover,
-        .toolbar-btn:hover {
-            color: #ffffff;
-            border-color: var(--border-bright);
-        }
-
-        .mode-btn.active,
-        .toolbar-btn.active {
-            background: rgba(20, 184, 166, 0.18);
-            color: var(--accent-neon);
-            border-color: var(--accent-neon);
-            box-shadow: 0 0 12px rgba(45, 212, 191, 0.2);
-        }
-
-        .sliders-container {
-            display: flex;
-            flex-direction: column;
-            gap: 11px;
-        }
-
-        .control-item {
-            background: rgba(9, 14, 24, 0.65);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 10px 13px;
-            border-radius: var(--radius-md);
-        }
-
-        .control-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 6px;
-            font-size: 0.81rem;
-            font-weight: 500;
-        }
-
-        .control-val {
-            font-family: var(--font-mono);
-            font-size: 0.76rem;
-            color: var(--accent-neon);
-            background: rgba(20, 184, 166, 0.12);
-            padding: 2px 8px;
-            border-radius: 5px;
-        }
-
-        input[type="range"] {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 100%;
-            height: 6px;
-            background: #1e293b;
-            border-radius: 999px;
-            outline: none;
-            cursor: pointer;
-        }
-
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--accent-neon);
-            border: 2px solid #070b12;
-            box-shadow: 0 0 8px rgba(45, 212, 191, 0.7);
-            cursor: pointer;
-            transition: transform 0.15s ease;
-        }
-
-        input[type="range"]::-webkit-slider-thumb:hover {
-            transform: scale(1.15);
-        }
-
-        .color-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-        }
-
-        .color-picker-wrap {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        input[type="color"] {
-            -webkit-appearance: none;
-            border: 1px solid var(--border-bright);
-            width: 36px;
-            height: 28px;
-            border-radius: 6px;
-            background: transparent;
-            cursor: pointer;
-        }
-
-        input[type="color"]::-webkit-color-swatch-wrapper {
-            padding: 2px;
-        }
-
-        input[type="color"]::-webkit-color-swatch {
-            border-radius: 4px;
-            border: none;
-        }
-
-        /* ==========================================================================
-           5. RIGHT PANEL: PREVIEW TOOLBAR, STAGE, CODE BOX & FIVERR FUNNEL
-           ========================================================================== */
-        .preview-toolbar {
+        /* --- GENERATOR GRID --- */
+        .generator-grid {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        .toolbar-group {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-
-        .preview-stage {
-            position: relative;
+            gap: 30px;
             width: 100%;
-            min-height: 360px;
-            border-radius: var(--radius-lg);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            display: flex;
-            align-items: center;
             justify-content: center;
-            padding: 32px 20px;
-            overflow: hidden;
-            margin-bottom: 22px;
-            transition: background 0.35s ease;
         }
 
-        /* 4 Distinct Background Canvas Styles */
-        .stage-bg-mesh {
-            background: linear-gradient(135deg, #071120 0%, #0f2942 40%, #114b5f 75%, #071120 100%);
+        .controls-panel, .preview-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 25px;
+            flex: 1 1 400px;
+            max-width: 100%;
         }
 
-        .stage-bg-orbs {
-            background-color: #080d1a;
-            background-image: 
-                radial-gradient(circle at 22% 28%, rgba(20, 184, 166, 0.65) 0%, transparent 38%),
-                radial-gradient(circle at 78% 72%, rgba(59, 130, 246, 0.65) 0%, transparent 40%),
-                radial-gradient(circle at 55% 45%, rgba(168, 85, 247, 0.45) 0%, transparent 35%);
-        }
-
-        .stage-bg-grid {
-            background-color: #060b13;
-            background-image: 
-                linear-gradient(rgba(45, 212, 191, 0.14) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(45, 212, 191, 0.14) 1px, transparent 1px),
-                radial-gradient(circle at 50% 50%, rgba(20, 184, 166, 0.25) 0%, transparent 60%);
-            background-size: 28px 28px, 28px 28px, 100% 100%;
-        }
-
-        .stage-bg-solid {
-            background-color: #151e2e;
-            background-image: radial-gradient(circle at 50% 30%, #1c273b 0%, #0f1623 100%);
-        }
-
-        /* Floating decorative cyber shapes inside preview stage */
-        .stage-orb-one,
-        .stage-orb-two {
-            position: absolute;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .stage-orb-one {
-            width: 130px;
-            height: 130px;
-            background: linear-gradient(135deg, #2dd4bf, #3b82f6);
-            top: 38px;
-            left: 16%;
-            opacity: 0.75;
-            filter: blur(2px);
-        }
-
-        .stage-orb-two {
-            width: 110px;
-            height: 110px;
-            background: linear-gradient(135deg, #38bdf8, #6366f1);
-            bottom: 34px;
-            right: 16%;
-            opacity: 0.75;
-            filter: blur(2px);
-        }
-
-        #livePreviewTarget {
-            position: relative;
-            z-index: 5;
-            width: 100%;
-            max-width: 395px;
-            padding: 28px;
-            color: #ffffff;
-            transition: border-radius 0.1s ease, box-shadow 0.15s ease;
-        }
-
-        /* Code Output Box */
-        .code-output-wrapper {
-            background: #05080f;
-            border: 1px solid rgba(45, 212, 191, 0.25);
-            border-radius: var(--radius-md);
-            overflow: hidden;
+        /* Controls */
+        .control-group {
             margin-bottom: 20px;
         }
-
-        .code-header {
-            background: rgba(15, 23, 38, 0.95);
-            padding: 10px 16px;
+        .control-group label {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        input[type="range"] {
+            width: 100%;
+            accent-color: var(--accent);
         }
 
-        .code-title {
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
-            color: var(--text-muted);
+        /* Preview */
+        .preview-area {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #238547, #0d4b8a);
+            border-radius: 10px;
             display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 8px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        #preview-box {
+            width: 150px;
+            height: 150px;
+            border-radius: 15px;
+            transition: all 0.2s ease;
+        }
+
+        .code-output {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            color: #58d18b;
+            white-space: pre-wrap;
+            margin-bottom: 15px;
         }
 
         .copy-btn {
-            background: var(--accent-cyan);
-            color: #041214;
-            border: none;
-            padding: 7px 14px;
-            border-radius: 6px;
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
-            font-weight: 700;
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            border-radius: 5px;
             cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s ease;
+            font-weight: bold;
+            transition: background 0.2s;
         }
-
         .copy-btn:hover {
-            background: var(--accent-neon);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(45, 212, 191, 0.35);
+            background: rgba(0, 255, 204, 0.1);
         }
 
-        pre.css-code-block {
-            padding: 18px;
-            font-family: var(--font-mono);
-            font-size: 0.84rem;
-            line-height: 1.7;
-            color: #e2e8f0;
-            overflow-x: auto;
-            white-space: pre-wrap;
-            word-break: break-word;
+        /* --- PROJECTS CAROUSEL --- */
+        .projects-section {
+            width: 100%;
+            margin-top: 60px;
         }
-
-        /* Fiverr Conversion Funnel Banner */
-        .fiverr-funnel-banner {
-            background: linear-gradient(110deg, rgba(29, 191, 115, 0.14) 0%, rgba(15, 23, 42, 0.96) 55%, rgba(20, 184, 166, 0.16) 100%);
-            border: 1px solid rgba(29, 191, 115, 0.45);
-            border-radius: var(--radius-md);
-            padding: 18px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
+        .projects-section h3 {
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 10px;
         }
-
-        .funnel-text h3 {
-            font-size: 0.96rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 3px;
-        }
-
-        .funnel-text p {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-        }
-
-        .fiverr-cta-btn {
-            background: #1dbf73;
-            color: #ffffff;
-            font-weight: 700;
-            font-size: 0.86rem;
-            padding: 10px 18px;
-            border-radius: 8px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 18px rgba(29, 191, 115, 0.35);
-            transition: all 0.2s ease;
-            white-space: nowrap;
-        }
-
-        .fiverr-cta-btn:hover {
-            background: #19a463;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(29, 191, 115, 0.55);
-        }
-
-        /* ==========================================================================
-           6. "MORE BY DEVELOPER" — SINGLE-LINE HORIZONTAL SCROLLABLE MINI-CARDS
-           ========================================================================== */
-        .section-block {
-            margin-top: 56px;
-        }
-
-        .section-heading-wrap {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 18px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .section-title {
-            font-size: 1.35rem;
-            font-weight: 800;
-            color: #ffffff;
-        }
-
-        .section-subtitle {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .scroll-controls {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .scroll-arrow-btn {
-            background: rgba(15, 23, 38, 0.9);
-            border: 1px solid var(--border-subtle);
-            color: var(--text-main);
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-        }
-
-        .scroll-arrow-btn:hover {
-            border-color: var(--accent-neon);
-            color: var(--accent-neon);
-            background: rgba(20, 184, 166, 0.12);
-        }
-
-        /* Single-line horizontal scrollable track */
         .projects-track {
             display: flex;
-            flex-wrap: nowrap;
-            gap: 18px;
+            gap: 20px;
             overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 4px 2px 14px 2px;
+            padding-bottom: 15px;
             scrollbar-width: thin;
-            scrollbar-color: rgba(45, 212, 191, 0.35) rgba(15, 23, 38, 0.5);
-            max-width: 100vw;
+            scrollbar-color: var(--accent) var(--bg-dark);
         }
-
-        .projects-track::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        .projects-track::-webkit-scrollbar-track {
-            background: rgba(15, 23, 38, 0.5);
-            border-radius: 999px;
-        }
-
-        .projects-track::-webkit-scrollbar-thumb {
-            background: rgba(45, 212, 191, 0.35);
-            border-radius: 999px;
-        }
-
-        .mini-project-card {
-            flex: 0 0 calc(100vw - 60px);
-            max-width: 380px;
-            min-width: 260px;
-            background: var(--bg-panel);
+        .project-card {
+            min-width: 250px;
+            background: var(--bg-card);
             border: 1px solid var(--border-subtle);
-            border-radius: 14px;
-            padding: 18px 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            border-radius: 8px;
+            padding: 20px;
             text-decoration: none;
-            color: inherit;
-            cursor: pointer;
-            transition: all 0.22s ease;
+            color: var(--text-main);
+            transition: border-color 0.2s;
         }
-
-        .mini-project-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--border-bright);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45), 0 0 16px rgba(20, 184, 166, 0.1);
+        .project-card:hover {
+            border-color: var(--accent);
         }
-
-        .mini-card-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
+        .project-card h4 {
+            color: #fff;
             margin-bottom: 8px;
         }
-
-        .mini-card-title {
-            font-size: 0.98rem;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .badge-live {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            font-weight: 700;
-            color: #34d399;
-            background: rgba(16, 185, 129, 0.14);
-            border: 1px solid rgba(52, 211, 153, 0.4);
-            padding: 2px 9px;
-            border-radius: 999px;
-            flex-shrink: 0;
-        }
-
-        .pulse-dot {
-            width: 6px;
-            height: 6px;
-            background: #34d399;
-            border-radius: 50%;
-            box-shadow: 0 0 6px #34d399;
-        }
-
-        .badge-soon {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            font-weight: 700;
-            color: var(--accent-amber);
-            background: rgba(245, 158, 11, 0.12);
-            border: 1px solid rgba(245, 158, 11, 0.4);
-            padding: 2px 9px;
-            border-radius: 999px;
-            flex-shrink: 0;
-        }
-
-        .mini-card-desc {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            line-height: 1.45;
-        }
-
-        .mini-card-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            padding-top: 10px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .tech-tags {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-
-        .tech-tag {
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            color: #cbd5e1;
-            background: rgba(255, 255, 255, 0.06);
-            padding: 2px 7px;
-            border-radius: 4px;
-        }
-
-        .mini-card-link {
-            font-family: var(--font-mono);
-            font-size: 0.74rem;
-            font-weight: 600;
-            color: var(--accent-neon);
-            white-space: nowrap;
-        }
-
-        .coming-soon-notice {
-            display: none;
-            margin-top: 10px;
-            padding: 8px 10px;
-            border-radius: 6px;
-            background: rgba(245, 158, 11, 0.12);
-            border: 1px solid rgba(245, 158, 11, 0.35);
-            color: #fde68a;
-            font-size: 0.75rem;
-            font-family: var(--font-mono);
-        }
-
-        /* ==========================================================================
-           7. SUBTLE, SHY "SUPPORT US FINANCIALLY" SIDE WIDGET & FOOTER
-           ========================================================================== */
-        .bottom-meta-row {
-            margin-top: 44px;
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.07);
-        }
-
-        .social-bar {
-            display: flex;
-            align-items: center;
-            gap: 16px; /* Adjusted spacing */
-            flex-wrap: wrap;
-            justify-content: flex-start; /* Clean alignment */
-        }
-
-        .social-pill {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: linear-gradient(145deg, rgba(15, 23, 38, 0.95), rgba(9, 14, 24, 0.95));
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: #94a3b8;
-            padding: 10px 20px;
-            border-radius: 12px;
+        .project-card p {
             font-size: 0.85rem;
-            font-family: var(--font-mono);
-            font-weight: 500;
-            text-decoration: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            min-width: 150px; /* Force uniform sizing for all logos */
+            color: #8b949e;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(255, 165, 0, 0.2);
+            color: orange;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            margin-bottom: 10px;
         }
 
-        .social-pill:hover {
-            border-color: rgba(45, 212, 191, 0.45);
-            color: #ffffff;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(45, 212, 191, 0.18);
-            background: linear-gradient(145deg, rgba(20, 184, 166, 0.12), rgba(9, 14, 24, 0.95));
-        }
-
-        .social-pill svg {
-            transition: transform 0.3s ease;
-        }
-
-        .social-pill:hover svg {
-            transform: scale(1.15); /* Sleek icon pop on hover */
-        }
-
-        /* Discreet, low-key side support box for a shy developer */
-        .shy-support-trigger {
-            background: rgba(13, 20, 33, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: #94a3b8;
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 0.78rem;
-            font-family: var(--font-mono);
+        /* --- COFFEE WIDGET & MODAL --- */
+        .coffee-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(13, 17, 23, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 30px;
             cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s ease;
+            font-weight: bold;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: background 0.3s, border-color 0.3s;
+        }
+        .coffee-btn:hover { 
+            background: rgba(255, 255, 255, 0.1); 
+            border-color: var(--accent);
         }
 
-        .shy-support-trigger:hover {
-            color: #cbd5e1;
-            border-color: rgba(148, 163, 184, 0.35);
-            background: rgba(15, 23, 38, 0.85);
-        }
-
-        .shy-support-drawer {
-            display: none;
-            margin-top: 10px;
-            background: rgba(13, 20, 33, 0.92);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            border-radius: 10px;
-            padding: 14px;
-            text-align: left;
-            font-size: 0.78rem;
-            color: #94a3b8;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-        }
-
-        .shy-support-actions {
+        .coffee-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
             display: flex;
-            gap: 8px;
-            margin-top: 10px;
-            flex-wrap: wrap;
-        }
-
-        .shy-mini-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(148, 163, 184, 0.25);
-            color: #cbd5e1;
-            padding: 5px 10px;
-            border-radius: 6px;
-            font-size: 0.73rem;
-            font-family: var(--font-mono);
-            text-decoration: none;
-            cursor: pointer;
-            display: inline-flex;
+            justify-content: center;
             align-items: center;
-            gap: 5px;
-            transition: all 0.18s ease;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
         }
-
-        .shy-mini-btn:hover {
-            border-color: var(--accent-neon);
-            color: #ffffff;
+        .coffee-modal.active {
+            opacity: 1;
+            pointer-events: all;
         }
-
-        .site-footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 22px 20px;
+        .coffee-content {
+            background: #161b22;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--border-subtle);
             text-align: center;
-            color: #64748b;
-            font-size: 0.8rem;
-            font-family: var(--font-mono);
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
-        /* Mobile Responsiveness Fixes */
-@media (max-width: 768px) {
-  /* Stack header elements cleanly */
-  header, .navbar {
-    flex-direction: column;
-    padding: 15px 10px;
-    gap: 15px;
-    align-items: center;
-  }
-  
-  /* Center align the navigation links */
-  .nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    gap: 15px;
-  }
+        .coffee-content h3 { margin-bottom: 10px; }
+        .coffee-content p { font-size: 0.9rem; color: #8b949e; }
+        
+        .iban-box {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            color: var(--accent);
+            border: 1px solid var(--border-subtle);
+        }
+        
+        .copy-iban-btn {
+            background: #2ea043;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .close-modal {
+            background: transparent;
+            border: none;
+            color: #8b949e;
+            cursor: pointer;
+            text-decoration: underline;
+        }
 
-  /* Scale down the massive heading */
-  .hero h1 {
-    font-size: 2.2rem;
-    line-height: 1.2;
-  }
-
-  /* Ensure mode and preset buttons wrap neatly */
-  .mode-buttons, .preset-buttons, 
-  .mode-selector, .preset-selector {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-  }
-  
-  /* Make the Fiverr button full width on mobile for better tapping */
-  .cta-button, .cta-btn, .fiverr-btn {
-    width: 100%;
-    justify-content: center;
-  }
-}
+        /* --- MOBILE FIXES --- */
+        @media (max-width: 768px) {
+            #main-header {
+                padding: 12px 15px;
+            }
+            body {
+                padding-top: 65px; /* Tighter spacing for mobile header */
+            }
+            .logo-container h2 {
+                font-size: 1rem;
+            }
+            .nav-links {
+                gap: 12px;
+            }
+            .fiverr-btn {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .controls-panel, .preview-panel {
+                padding: 15px;
+            }
+            .coffee-btn {
+                bottom: 15px;
+                right: 15px;
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- ==========================================================================
-         1. HEADER (OFFICIAL "black-hat-exe CORP." 3D METALLIC & NAVY LOGO)
-         ========================================================================== -->
-    <header class="site-header">
-        <div class="header-container">
-            <a href="#" class="brand-wrap">
-                <!-- Recreated 3D Metallic Silver & Deep Navy Geometric Hat/Shield Emblem -->
-                <svg class="brand-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <!-- Brushed Bright Silver Gradient (Left Highlight Facets) -->
-                        <linearGradient id="silverBright" x1="15%" y1="10%" x2="85%" y2="90%">
-                            <stop offset="0%" stop-color="#FFFFFF"/>
-                            <stop offset="55%" stop-color="#CBD5E1"/>
-                            <stop offset="100%" stop-color="#94A3B8"/>
-                        </linearGradient>
-                        <!-- Medium Metallic Steel Gradient (Right & Wing Facets) -->
-                        <linearGradient id="silverSteel" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#94A3B8"/>
-                            <stop offset="60%" stop-color="#64748B"/>
-                            <stop offset="100%" stop-color="#334155"/>
-                        </linearGradient>
-                        <!-- Deep Navy Core Gradient (Recessed Right & Visor Facets) -->
-                        <linearGradient id="navyCore" x1="20%" y1="0%" x2="80%" y2="100%">
-                            <stop offset="0%" stop-color="#1E3A6D"/>
-                            <stop offset="50%" stop-color="#0F2347"/>
-                            <stop offset="100%" stop-color="#071126"/>
-                        </linearGradient>
-                    </defs>
-
-                    <!-- TOP CROWN: Left Brushed Silver Fedora Peak (M-indent top) -->
-                    <polygon points="35,12 50,21 50,15 34,8 23,36 49,43 49,21" fill="url(#silverBright)"/>
-                    <!-- TOP CROWN: Right Deep Navy Recessed Fold -->
-                    <polygon points="50,21 63,13 66,40 49,43" fill="url(#navyCore)"/>
-                    <!-- TOP CROWN: Right Metallic Silver Outer Ridge -->
-                    <polygon points="65,8 50,15 50,21 63,13 66,40 49,43 49,48 72,42 77,36" fill="url(#silverSteel)"/>
-
-                    <!-- MIDDLE BRIM: Left Sharp Horizontal Wing -->
-                    <polygon points="6,47 23,36 33,51 28,60" fill="url(#silverBright)"/>
-                    <!-- MIDDLE BRIM: Right Sharp Horizontal Wing -->
-                    <polygon points="94,47 77,36 67,51 72,60" fill="url(#silverSteel)"/>
-                    <!-- MIDDLE VISOR: Deep Navy Curved Brow Band -->
-                    <polygon points="24,42 50,48 76,42 71,52 50,57 29,52" fill="url(#navyCore)"/>
-                    <!-- MIDDLE VISOR: Silver Highlight Rim Under Visor -->
-                    <polygon points="27,52 50,58 73,52 68,57 50,62 32,57" fill="url(#silverBright)"/>
-
-                    <!-- LOWER SHIELD: Left & Right Outer Metallic Cheek Guards -->
-                    <polygon points="28,65 34,62 47,87 28,74" fill="url(#silverBright)"/>
-                    <polygon points="72,65 66,62 53,87 72,74" fill="url(#silverSteel)"/>
-
-                    <!-- LOWER SHIELD: Center V-Mask Deep Navy Inner Cutout -->
-                    <polygon points="33,57 50,62 67,57 50,70" fill="url(#navyCore)"/>
-                    <!-- LOWER SHIELD: Center Sharp V-Point (Left Bright Silver Facet) -->
-                    <polygon points="32,58 50,70 50,94" fill="url(#silverBright)"/>
-                    <!-- LOWER SHIELD: Center Sharp V-Point (Right Deep Navy Facet) -->
-                    <polygon points="68,58 50,70 50,94" fill="url(#navyCore)"/>
-                </svg>
-
-                <div class="brand-text-block">
-                    <span class="brand-title">black-hat-exe</span>
-                    <span class="brand-subtitle">CORP.</span>
-                </div>
-            </a>
-
-            <nav class="nav-links">
-                <a href="#generator-workspace" class="nav-link">UI Generator</a>
-                <a href="#more-by-developer" class="nav-link">More by Developer</a>
-                <a href="https://github.com/black-hat-exe" target="_blank" rel="noopener noreferrer" class="nav-link">
-                    <!-- GitHub Octocat Inline SVG -->
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-                    </svg>
-                    GitHub
-                </a>
-                <a href="https://www.fiverr.com/syed_m_ertaza" target="_blank" rel="noopener noreferrer" class="nav-link nav-link-fiverr">
-                    <!-- Official Fiverr "fi" Badge Inline SVG -->
-                    <svg width="18" height="18" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <circle cx="14" cy="14" r="14" fill="#1DBF73"/>
-                        <path d="M12.2 11.4H10.3V10.1C10.3 9.4 10.7 9.1 11.4 9.1H12.3V6.9H10.9C8.7 6.9 7.6 8.1 7.6 10.1V11.4H6.1V13.6H7.6V19.5H10.3V13.6H12.2V11.4ZM17.6 11.4H14.9V19.5H17.6V11.4ZM16.25 6.7C15.35 6.7 14.65 7.4 14.65 8.25C14.65 9.1 15.35 9.8 16.25 9.8C17.15 9.8 17.85 9.1 17.85 8.25C17.85 7.4 17.15 6.7 16.25 6.7Z" fill="#FFFFFF"/>
-                        <circle cx="20.2" cy="18.1" r="1.5" fill="#FFFFFF"/>
-                    </svg>
-                    Hire Me on Fiverr
-                </a>
-            </nav>
+    <!-- Auto-Hiding Header -->
+    <header id="main-header">
+        <div class="logo-container">
+            <svg width="24" height="24" viewBox="0 0 100 100">
+                <path d="M50 10 L90 40 L50 90 L10 40 Z" fill="none" stroke="#fff" stroke-width="5"/>
+                <path d="M10 40 L90 40" stroke="#00ffcc" stroke-width="3"/>
+            </svg>
+            <h2>black-hat-exe CORP.</h2>
+        </div>
+        <div class="nav-links">
+            <a href="https://github.com/black-hat-exe" target="_blank" class="github-link">GitHub</a>
+            <a href="https://www.fiverr.com/syed_m_ertaza" target="_blank" class="fiverr-btn">Hire Me</a>
         </div>
     </header>
 
-    <!-- ==========================================================================
-         2. MAIN UI GENERATOR WORKSPACE (10 GRANULAR CONTROLS & 3 MODES)
-         ========================================================================== -->
-    <main class="main-container" id="generator-workspace">
-        <div class="hero-banner">
-            <span class="hero-badge">&gt;_ black-hat-exe CORP. // UI STUDIO v2.5</span>
-            <h1 class="hero-title">Glassmorphism, Neumorphism &amp; Cyber CSS Generator</h1>
-            <p class="hero-desc">Customize blur, opacity, glow spread, and dual-shadow depth in real time. Export clean, hand-crafted CSS3 with zero dependencies.</p>
+    <main>
+        <div class="hero">
+            <h1>Glassmorphism Generator</h1>
+            <p>Customize blur, opacity, and borders in real time. Export clean, hand-crafted CSS3 instantly.</p>
         </div>
 
         <div class="generator-grid">
-            <!-- LEFT PANEL: 3 MODES, PRESETS & 10 UX CONTROLS -->
-            <section class="panel-card" aria-label="CSS Controls">
-                <div class="panel-header">
-                    <h2 class="panel-title">
-                        <span>&#9881;</span> 10 UX Surface Controls
-                    </h2>
-                    <button type="button" class="preset-btn" onclick="applyPreset('reset')">Reset Default</button>
+            <!-- Controls -->
+            <div class="controls-panel">
+                <div class="control-group">
+                    <label><span>Blur</span> <span id="blur-val">10px</span></label>
+                    <input type="range" id="blur" min="0" max="30" value="10">
                 </div>
-
-                <!-- 3 Switchable Modes -->
-                <span class="control-group-label">Surface Mode</span>
-                <div class="mode-switcher">
-                    <button type="button" id="modeGlass" class="mode-btn active" onclick="setMode('glass')">Glassmorphism</button>
-                    <button type="button" id="modeNeu" class="mode-btn" onclick="setMode('neu')">Neumorphism</button>
-                    <button type="button" id="modeHybrid" class="mode-btn" onclick="setMode('hybrid')">Cyber Hybrid</button>
+                <div class="control-group">
+                    <label><span>Opacity</span> <span id="opacity-val">0.2</span></label>
+                    <input type="range" id="opacity" min="0" max="1" step="0.05" value="0.2">
                 </div>
-
-                <!-- Quick Presets -->
-                <span class="control-group-label">Quick Presets</span>
-                <div class="preset-switcher">
-                    <button type="button" class="preset-btn" onclick="applyPreset('frost')">Cyber Frost</button>
-                    <button type="button" class="preset-btn" onclick="applyPreset('neon')">Neon Term</button>
-                    <button type="button" class="preset-btn" onclick="applyPreset('neuDark')">Soft Neu</button>
-                    <button type="button" class="preset-btn" onclick="applyPreset('obsidian')">Obsidian</button>
+                <div class="control-group">
+                    <label><span>Border Opacity</span> <span id="border-val">0.1</span></label>
+                    <input type="range" id="border" min="0" max="1" step="0.05" value="0.1">
                 </div>
+            </div>
 
-                <!-- 10 Granular UX Controls -->
-                <div class="sliders-container">
-                    <!-- 1. Blur (px) -->
-                    <div class="control-item">
-                        <div class="control-top">
-                            <label for="blurRange">1. Blur (px)</label>
-                            <span id="blurVal" class="control-val">16px</span>
-                        </div>
-                        <input type="range" id="blurRange" min="0" max="40" step="1" value="16" oninput="updateGenerator()">
-                    </div>
-
-                    <!-- 2. Opacity (%) -->
-                    <div class="control-item">
-                        <div class="control-top">
-                            <label for="opacityRange">2. Opacity (%)</label>
-                            <span id="opacityVal" class="control-val">24%</span>
-                        </div>
-                        <input type="range" id="opacityRange" min="2" max="100" step="1" value="24" oninput="updateGenerator()">
-                    </div>
-
-                    <!-- 3. Border Width (px) -->
-                    <div class="control-item">
-                        <div class="control-top">
-                            <label for="borderWidthRange">3. Border Width (px)</label>
-                            <span id="borderWidthVal" class="control-val">1px</span>
-                        </div>
-                        <input type="range" id="borderWidthRange" min="0" max="6" step="1" value="1" oninput="updateGenerator()">
-                    </div>
-
-                    <!-- 4. Border Opacity (%) -->
-                    <div class="control-item">
-                        <div class="control-top">
-                            <label for="borderOpacityRange">4. Border Opacity (%)</label>
-                            <span id="borderOpacityVal" class="control-val">28%</span>
-                        </div>
-                        <input type="range" id="borderOpacityRange" min="0" max="100" step="2" value="28" oninput="updateGenerator()">
-                    </div>
-
-                    <!-- 5. Border Radius (px) -->
-                    <div class="control-item">
-                        <div class="control-top">
-                            <label for="radiusRange">5. Border Radius (px)</label>
-                            <span id="radiusVal" class="control-val">18px</span>
-                        </div>
-                        <input type="range" id="radiusRange" min="0" max="48" step="1" value="18" oninput="updateGenerator()">
-                    </div>
-
-                    <!-- 6. Shadow Distance (px) -->
-                    <div class="control-item">
-                        <div class="control-top">
-                            <label for="shadowDistRange">6. Shadow Distance (px)</label>
-                            <span id="shadowDistVal" class="control-val">12px</span>
-                        </div>
-                        <input type="range" id="shadowDistRange" min="0" max="40" step="1" value="12" oninput="updateGenerator()">
-                    </div>
-
-                    <!-- 7. Shadow Intensity (%) -->
-                    <div class="control-item">
-                        <div class="control-top">
-                            <label for="shadowIntensityRange">7. Shadow Intensity (%)</label>
-                            <span id="shadowIntensityVal" class="control-val">45%</span>
-                        </div>
-                        <input type="range" id="shadowIntensityRange" min="0" max="95" step="1" value="45" oninput="updateGenerator()">
-                    </div>
-
-                    <!-- 8. Glow Spread (px) -->
-                    <div class="control-item">
-                        <div class="control-top">
-                            <label for="glowSpreadRange">8. Glow Spread (px)</label>
-                            <span id="glowSpreadVal" class="control-val">14px</span>
-                        </div>
-                        <input type="range" id="glowSpreadRange" min="0" max="50" step="1" value="14" oninput="updateGenerator()">
-                    </div>
-
-                    <!-- 9. Card Tint Color Picker -->
-                    <div class="control-item">
-                        <div class="color-row">
-                            <label for="surfaceColor" style="font-size:0.81rem;font-weight:500;">9. Card Tint Color</label>
-                            <div class="color-picker-wrap">
-                                <input type="color" id="surfaceColor" value="#111928" oninput="updateGenerator()">
-                                <span id="colorVal" class="control-val">#111928</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 10. Background Canvas Style Toggle -->
-                    <div class="control-item">
-                        <div class="control-top">
-                            <span>10. Background Canvas Style</span>
-                            <span id="canvasStyleLabel" class="control-val">Neon Orbs</span>
-                        </div>
-                        <div class="canvas-switcher" style="margin-bottom:0;margin-top:6px;">
-                            <button type="button" id="bgBtnMesh" class="toolbar-btn" onclick="setStageBg('mesh')">Cyber Mesh</button>
-                            <button type="button" id="bgBtnOrbs" class="toolbar-btn active" onclick="setStageBg('orbs')">Neon Orbs</button>
-                            <button type="button" id="bgBtnGrid" class="toolbar-btn" onclick="setStageBg('grid')">Carbon Grid</button>
-                            <button type="button" id="bgBtnSolid" class="toolbar-btn" onclick="setStageBg('solid')">Solid Dark</button>
-                        </div>
-                    </div>
+            <!-- Preview & Code -->
+            <div class="preview-panel">
+                <div class="preview-area">
+                    <div id="preview-box"></div>
                 </div>
-            </section>
-
-            <!-- RIGHT PANEL: LIVE PREVIEW STAGE, CODE OUTPUT & FIVERR FUNNEL -->
-            <section class="panel-card" aria-label="Live Preview and Code Output">
-                <div class="preview-toolbar">
-                    <div class="toolbar-group">
-                        <span class="control-group-label" style="margin:0 6px 0 0;">Sample UI Template:</span>
-                        <button type="button" id="compBtnCard" class="toolbar-btn active" onclick="setPreviewComponent('card')">Telemetry Card</button>
-                        <button type="button" id="compBtnForm" class="toolbar-btn" onclick="setPreviewComponent('form')">Auth Terminal</button>
-                        <button type="button" id="compBtnButtons" class="toolbar-btn" onclick="setPreviewComponent('buttons')">Control Deck</button>
-                    </div>
-                    <span class="control-val">Real-Time CSS3 Engine</span>
-                </div>
-
-                <!-- Live Visual Preview Stage -->
-                <div id="previewStage" class="preview-stage stage-bg-orbs">
-                    <div id="orbOne" class="stage-orb-one"></div>
-                    <div id="orbTwo" class="stage-orb-two"></div>
-
-                    <!-- Dynamic Target Component -->
-                    <div id="livePreviewTarget"></div>
-                </div>
-
-                <!-- Generated CSS Code Output Box -->
-                <div class="code-output-wrapper">
-                    <div class="code-header">
-                        <span class="code-title">
-                            <span style="color:#2dd4bf;">&#9679;</span> Generated Production CSS3
-                        </span>
-                        <button type="button" id="copyCssBtn" class="copy-btn" onclick="copyGeneratedCss()">
-                            Copy CSS
-                        </button>
-                    </div>
-                    <pre class="css-code-block"><code id="cssCodeOutput"></code></pre>
-                </div>
-
-                <!-- Embedded Fiverr Conversion Funnel Banner with Official Fiverr SVG Badge -->
-                <div class="fiverr-funnel-banner">
-                    <div class="funnel-text">
-                        <h3>Need a complete Figma design converted into custom responsive HTML, CSS &amp; JS?</h3>
-                        <p>Skip bloated templates. Get hand-coded, pixel-perfect front-end architecture by M. Ertaza.</p>
-                    </div>
-                    <a href="https://www.fiverr.com/syed_m_ertaza" target="_blank" rel="noopener noreferrer" class="fiverr-cta-btn">
-                        <svg width="20" height="20" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <circle cx="14" cy="14" r="14" fill="#FFFFFF"/>
-                            <path d="M12.2 11.4H10.3V10.1C10.3 9.4 10.7 9.1 11.4 9.1H12.3V6.9H10.9C8.7 6.9 7.6 8.1 7.6 10.1V11.4H6.1V13.6H7.6V19.5H10.3V13.6H12.2V11.4ZM17.6 11.4H14.9V19.5H17.6V11.4ZM16.25 6.7C15.35 6.7 14.65 7.4 14.65 8.25C14.65 9.1 15.35 9.8 16.25 9.8C17.15 9.8 17.85 9.1 17.85 8.25C17.85 7.4 17.15 6.7 16.25 6.7Z" fill="#1DBF73"/>
-                            <circle cx="20.2" cy="18.1" r="1.5" fill="#1DBF73"/>
-                        </svg>
-                        Hire Me on Fiverr &rarr;
-                    </a>
-                </div>
-            </section>
+                <div class="code-output" id="css-code"></div>
+                <button class="copy-btn" id="copy-css">Copy CSS</button>
+            </div>
         </div>
 
-        <!-- ==========================================================================
-             3. "MORE BY DEVELOPER" — SINGLE-LINE HORIZONTAL SCROLLABLE MINI-CARDS
-             ========================================================================== -->
-        <section id="more-by-developer" class="section-block">
-            <div class="section-heading-wrap">
-                <div>
-                    <h2 class="section-title">More by Developer — black-hat-exe CORP.</h2>
-                    <p class="section-subtitle">Scroll horizontally to explore live web deployments and upcoming projects.</p>
-                </div>
-                <div class="scroll-controls">
-                    <button type="button" class="scroll-arrow-btn" onclick="scrollProjects(-1)" title="Scroll Left" aria-label="Scroll Left">&#8592;</button>
-                    <button type="button" class="scroll-arrow-btn" onclick="scrollProjects(1)" title="Scroll Right" aria-label="Scroll Right">&#8594;</button>
-                </div>
-            </div>
-
-            <!-- Horizontal Scrollable Track -->
-            <div id="projectsTrack" class="projects-track">
-                <!-- Mini-Card 1: Cloud Infrastructure Dashboard (LIVE) -->
-                <a href="https://black-hat-exe.github.io/Cloud-Infrastructure-Dashboard/" target="_blank" rel="noopener noreferrer" class="mini-project-card">
-                    <div>
-                        <div class="mini-card-top">
-                            <h3 class="mini-card-title">Cloud Infrastructure Dashboard</h3>
-                            <span class="badge-live"><span class="pulse-dot"></span> LIVE</span>
-                        </div>
-                        <p class="mini-card-desc">
-                            Real-time telemetry UI cards, server cluster metrics, and interactive system log terminal built with custom Glassmorphism.
-                        </p>
-                    </div>
-                    <div class="mini-card-footer">
-                    <div class="tech-tags">
-                        <span class="tech-tag">CSS Animations</span>
-                        <span class="tech-tag">Vanilla JS</span>
-                    </div>
-                    <span class="mini-card-link">Open Live &rarr;</span>
-                </div>
-            </a>
-
-            <!-- Mini-Card 2: Birthday-wish (LIVE) -->
-            <a href="https://black-hat-exe.github.io/Birthday-wish/#" target="_blank" rel="noopener noreferrer" class="mini-project-card">
-                <div>
-                    <div class="mini-card-top">
-                        <h3 class="mini-card-title">Interactive Birthday Wish</h3>
-                        <span class="badge-live"><span class="pulse-dot"></span> LIVE</span>
-                    </div>
-                    <p class="mini-card-desc">
-                        A personalized, fully interactive web experience featuring custom animations, 3D elements, and responsive celebratory UI.
-                    </p>
-                </div>
-                <div class="mini-card-footer">
-                    <div class="tech-tags">
-                        <span class="tech-tag">Animations</span>
-                        <span class="tech-tag">UI/UX</span>
-                    </div>
-                    <span class="mini-card-link">Open Live &rarr;</span>
-                </div>
-            </a>
-
-            <!-- Mini-Card 3: Official Portfolio (LIVE) -->
-            <a href="https://black-hat-exe.github.io/Portfolio/" target="_blank" rel="noopener noreferrer" class="mini-project-card">
-                <div>
-                    <div class="mini-card-top">
-                        <h3 class="mini-card-title">Official Portfolio</h3>
-                        <span class="badge-live"><span class="pulse-dot"></span> LIVE</span>
-                    </div>
-                    <p class="mini-card-desc">
-                        The central hub for all my custom frontend architecture, freelance UI/UX services, and professional IT case studies.
-                    </p>
-                </div>
-                <div class="mini-card-footer">
-                    <div class="tech-tags">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">Responsive UI</span>
-                    </div>
-                    <span class="mini-card-link">Open Live &rarr;</span>
-                </div>
-            </a>
-
-            <!-- Mini-Card 4: PinBack QR Lost & Found (COMING SOON) -->
-            <div class="mini-project-card" onclick="toggleComingSoon('pinbackNotice')">
-                    <div>
-                        <div class="mini-card-top">
-                            <h3 class="mini-card-title">PinBack — QR Lost &amp; Found</h3>
-                            <span class="badge-soon">&#9203; COMING SOON</span>
-                        </div>
-                        <p class="mini-card-desc">
-                            Multi-tier smart QR recovery tags with 6-digit PIN verification and privacy-first map tracking for lost essentials.
-                        </p>
-                        <div id="pinbackNotice" class="coming-soon-notice">
-                            [STATUS]: PinBack is currently in active development under black-hat-exe CORP. Public beta launching soon.
-                        </div>
-                    </div>
-                    <div class="mini-card-footer">
-                        <div class="tech-tags">
-                            <span class="tech-tag">QR Engine</span>
-                            <span class="tech-tag">6-Digit Auth</span>
-                        </div>
-                        <span class="mini-card-link" style="color:var(--accent-amber);">Check Status &bull;</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==========================================================================
-             4. SOCIAL BAR & SUBTLE, SHY "SUPPORT US FINANCIALLY" SIDE WIDGET
-             ========================================================================== -->
-        <div class="bottom-meta-row">
-            <!-- Official Platform & Social Links with Crisp SVGs -->
-            <div class="social-bar">
-                <a href="https://www.fiverr.com/syed_m_ertaza" target="_blank" rel="noopener noreferrer" class="social-pill">
-                    <svg width="16" height="16" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="14" cy="14" r="14" fill="#1DBF73"/>
-                        <path d="M12.2 11.4H10.3V10.1C10.3 9.4 10.7 9.1 11.4 9.1H12.3V6.9H10.9C8.7 6.9 7.6 8.1 7.6 10.1V11.4H6.1V13.6H7.6V19.5H10.3V13.6H12.2V11.4ZM17.6 11.4H14.9V19.5H17.6V11.4ZM16.25 6.7C15.35 6.7 14.65 7.4 14.65 8.25C14.65 9.1 15.35 9.8 16.25 9.8C17.15 9.8 17.85 9.1 17.85 8.25C17.85 7.4 17.15 6.7 16.25 6.7Z" fill="#FFFFFF"/>
-                    </svg>
-                    Fiverr Profile
+        <!-- Projects Track -->
+        <div class="projects-section">
+            <h3>More by Developer</h3>
+            <div class="projects-track">
+                <a href="https://black-hat-exe.github.io/Portfolio/" target="_blank" class="project-card">
+                    <h4>Portfolio</h4>
+                    <p>Personal developer portfolio showcasing skills and projects.</p>
                 </a>
-
-                <a href="https://github.com/black-hat-exe" target="_blank" rel="noopener noreferrer" class="social-pill">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-                    </svg>
-                    GitHub (@black-hat-exe)
+                <a href="https://black-hat-exe.github.io/Cloud-Infrastructure-Dashboard/" target="_blank" class="project-card">
+                    <h4>Cloud Dashboard</h4>
+                    <p>Interactive data UI cards and real-time system log terminal.</p>
                 </a>
-
-                <a href="https://www.upwork.com/" target="_blank" rel="noopener noreferrer" class="social-pill">
-                    <!-- Upwork Vector Icon -->
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#14a800">
-                        <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.548-1.405-.002-2.543-1.143-2.545-2.548V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z"/>
-                    </svg>
-                    Upwork
+                <a href="https://black-hat-exe.github.io/Birthday-wish/#" target="_blank" class="project-card">
+                    <h4>Birthday Wish</h4>
+                    <p>Dynamic interactive web project with custom animations.</p>
                 </a>
-            </div>
-
-            <!-- Quiet, Humble Side Widget for Financial Support -->
-            <div class="shy-support-wrapper">
-                <button type="button" class="shy-support-trigger" onclick="toggleShySupport()">
-                    <span>&#9749;</span> Support Indie Work (Optional)
-                </button>
-                <div id="shySupportDrawer" class="shy-support-drawer">
-                    <p style="margin-bottom:6px;color:#cbd5e1;font-weight:600;">Thanks for checking this out!</p>
-                    <p>I build these free UI tools alongside my IT studies. Zero pressure at all—just using or sharing the generator helps a lot. If you ever want to support my indie builds financially:</p>
-                    <div class="shy-support-actions">
-                        <a href="https://www.fiverr.com/syed_m_ertaza" target="_blank" rel="noopener noreferrer" class="shy-mini-btn">
-                            Order a Small Task / Tip on Fiverr &rarr;
-                        </a>
-                        <button type="button" id="shyShareBtn" class="shy-mini-btn" onclick="copyShareLink()">
-                            Copy Link to Share
-                        </button>
-                    </div>
+                <div class="project-card">
+                    <span class="badge">Coming Soon</span>
+                    <h4>PinBack</h4>
+                    <p>Lost & found QR web application by Black Hat Exe Corp.</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- ==========================================================================
-         5. FOOTER
-         ========================================================================== -->
-    <footer class="site-footer">
-        <p>black-hat-exe CORP. &copy; 2026 | Engineered by Syed Muhammad Ertaza (M. Ertaza)</p>
-    </footer>
+    <!-- Buy Me A Coffee Button -->
+    <button class="coffee-btn" id="coffee-btn">☕ Buy Me a Coffee</button>
 
-    <!-- ==========================================================================
-         6. CLEAN VANILLA JAVASCRIPT (NAMED FUNCTIONS, STANDARD DOM MANIPULATION)
-         ========================================================================== -->
+    <!-- Secure IBAN Modal -->
+    <div class="coffee-modal" id="coffee-modal">
+        <div class="coffee-content">
+            <h3>Support Indie Work</h3>
+            <p>If this tool saved you time, consider fueling the next project via NayaPay transfer.</p>
+            <div class="iban-box" id="iban-text">PK77NAYA1234503361901333</div>
+            <button class="copy-iban-btn" id="copy-iban-btn">Copy IBAN</button>
+            <button class="close-modal" id="close-modal">Close</button>
+        </div>
+    </div>
+
     <script>
-        var currentMode = 'glass';
-        var currentCanvas = 'orbs';
-
-        // Convert 6-digit hex color (#RRGGBB) to {r, g, b}
-        function hexToRgb(hex) {
-            var cleanHex = hex.replace('#', '');
-            var r = parseInt(cleanHex.substring(0, 2), 16);
-            var g = parseInt(cleanHex.substring(2, 4), 16);
-            var b = parseInt(cleanHex.substring(4, 6), 16);
-            return { r: r, g: g, b: b };
-        }
-
-        // Clamp RGB channel between 0 and 255
-        function clampChannel(val) {
-            return Math.max(0, Math.min(255, Math.round(val)));
-        }
-
-        // Lighten or darken RGB color for Neumorphic dual shadows
-        function adjustBrightness(rgb, factor) {
-            var r = clampChannel(rgb.r + factor);
-            var g = clampChannel(rgb.g + factor);
-            var b = clampChannel(rgb.b + factor);
-            return 'rgb(' + r + ', ' + g + ', ' + b + ')';
-        }
-
-        // Switch between Glassmorphism, Neumorphism, and Cyber Hybrid
-        function setMode(modeName) {
-            currentMode = modeName;
-
-            document.getElementById('modeGlass').className = (modeName === 'glass') ? 'mode-btn active' : 'mode-btn';
-            document.getElementById('modeNeu').className = (modeName === 'neu') ? 'mode-btn active' : 'mode-btn';
-            document.getElementById('modeHybrid').className = (modeName === 'hybrid') ? 'mode-btn active' : 'mode-btn';
-
-            if (modeName === 'neu') {
-                document.getElementById('surfaceColor').value = '#151e2e';
-                document.getElementById('opacityRange').value = 100;
-                document.getElementById('borderWidthRange').value = 0;
-                setStageBg('solid');
-            } else if (modeName === 'glass') {
-                document.getElementById('surfaceColor').value = '#111928';
-                document.getElementById('opacityRange').value = 24;
-                document.getElementById('borderWidthRange').value = 1;
-                setStageBg('orbs');
-            } else if (modeName === 'hybrid') {
-                document.getElementById('surfaceColor').value = '#0b192c';
-                document.getElementById('opacityRange').value = 55;
-                document.getElementById('borderWidthRange').value = 1;
-                document.getElementById('glowSpreadRange').value = 22;
-                setStageBg('grid');
+        // --- SMART HEADER SCROLL LOGIC ---
+        let lastScroll = 0;
+        const header = document.getElementById('main-header');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            // Hide header if scrolling down and past 80px. Show if scrolling up.
+            if (currentScroll > lastScroll && currentScroll > 80) {
+                header.classList.add('header-hidden');
+            } else {
+                header.classList.remove('header-hidden');
             }
+            lastScroll = currentScroll;
+        });
 
-            updateGenerator();
-        }
+        // --- CSS GENERATOR LOGIC ---
+        const blurInput = document.getElementById('blur');
+        const opacityInput = document.getElementById('opacity');
+        const borderInput = document.getElementById('border');
+        const previewBox = document.getElementById('preview-box');
+        const codeOutput = document.getElementById('css-code');
 
-        // Apply quick presets
-        function applyPreset(presetName) {
-            if (presetName === 'frost' || presetName === 'reset') {
-                currentMode = 'glass';
-                document.getElementById('blurRange').value = 16;
-                document.getElementById('opacityRange').value = 24;
-                document.getElementById('borderWidthRange').value = 1;
-                document.getElementById('borderOpacityRange').value = 28;
-                document.getElementById('radiusRange').value = 18;
-                document.getElementById('shadowDistRange').value = 12;
-                document.getElementById('shadowIntensityRange').value = 45;
-                document.getElementById('glowSpreadRange').value = 14;
-                document.getElementById('surfaceColor').value = '#111928';
-                setStageBg('orbs');
-            } else if (presetName === 'neon') {
-                currentMode = 'hybrid';
-                document.getElementById('blurRange').value = 20;
-                document.getElementById('opacityRange').value = 48;
-                document.getElementById('borderWidthRange').value = 2;
-                document.getElementById('borderOpacityRange').value = 64;
-                document.getElementById('radiusRange').value = 14;
-                document.getElementById('shadowDistRange').value = 10;
-                document.getElementById('shadowIntensityRange').value = 60;
-                document.getElementById('glowSpreadRange').value = 28;
-                document.getElementById('surfaceColor').value = '#071b24';
-                setStageBg('grid');
-            } else if (presetName === 'neuDark') {
-                currentMode = 'neu';
-                document.getElementById('blurRange').value = 0;
-                document.getElementById('opacityRange').value = 100;
-                document.getElementById('borderWidthRange').value = 0;
-                document.getElementById('borderOpacityRange').value = 10;
-                document.getElementById('radiusRange').value = 24;
-                document.getElementById('shadowDistRange').value = 11;
-                document.getElementById('shadowIntensityRange').value = 50;
-                document.getElementById('glowSpreadRange').value = 0;
-                document.getElementById('surfaceColor').value = '#151e2e';
-                setStageBg('solid');
-            } else if (presetName === 'obsidian') {
-                currentMode = 'glass';
-                document.getElementById('blurRange').value = 28;
-                document.getElementById('opacityRange').value = 72;
-                document.getElementById('borderWidthRange').value = 1;
-                document.getElementById('borderOpacityRange').value = 22;
-                document.getElementById('radiusRange').value = 16;
-                document.getElementById('shadowDistRange').value = 18;
-                document.getElementById('shadowIntensityRange').value = 65;
-                document.getElementById('glowSpreadRange').value = 18;
-                document.getElementById('surfaceColor').value = '#060911';
-                setStageBg('mesh');
-            }
-
-            document.getElementById('modeGlass').className = (currentMode === 'glass') ? 'mode-btn active' : 'mode-btn';
-            document.getElementById('modeNeu').className = (currentMode === 'neu') ? 'mode-btn active' : 'mode-btn';
-            document.getElementById('modeHybrid').className = (currentMode === 'hybrid') ? 'mode-btn active' : 'mode-btn';
-
-            updateGenerator();
-        }
-
-        // Read all 10 controls, update UI badges, style preview card, and generate CSS code
         function updateGenerator() {
-            var blur = parseInt(document.getElementById('blurRange').value, 10);
-            var opacityPct = parseInt(document.getElementById('opacityRange').value, 10);
-            var borderWidth = parseInt(document.getElementById('borderWidthRange').value, 10);
-            var borderOpacityPct = parseInt(document.getElementById('borderOpacityRange').value, 10);
-            var radius = parseInt(document.getElementById('radiusRange').value, 10);
-            var shadowDist = parseInt(document.getElementById('shadowDistRange').value, 10);
-            var shadowIntensityPct = parseInt(document.getElementById('shadowIntensityRange').value, 10);
-            var glowSpread = parseInt(document.getElementById('glowSpreadRange').value, 10);
-            var hexColor = document.getElementById('surfaceColor').value;
+            const blur = blurInput.value;
+            const opacity = opacityInput.value;
+            const border = borderInput.value;
 
-            // Update value labels
-            document.getElementById('blurVal').textContent = blur + 'px';
-            document.getElementById('opacityVal').textContent = opacityPct + '%';
-            document.getElementById('borderWidthVal').textContent = borderWidth + 'px';
-            document.getElementById('borderOpacityVal').textContent = borderOpacityPct + '%';
-            document.getElementById('radiusVal').textContent = radius + 'px';
-            document.getElementById('shadowDistVal').textContent = shadowDist + 'px';
-            document.getElementById('shadowIntensityVal').textContent = shadowIntensityPct + '%';
-            document.getElementById('glowSpreadVal').textContent = glowSpread + 'px';
-            document.getElementById('colorVal').textContent = hexColor.toUpperCase();
+            document.getElementById('blur-val').innerText = blur + 'px';
+            document.getElementById('opacity-val').innerText = opacity;
+            document.getElementById('border-val').innerText = border;
 
-            var opacityDec = (opacityPct / 100).toFixed(2);
-            var borderOpacityDec = (borderOpacityPct / 100).toFixed(2);
-            var shadowAlpha = (shadowIntensityPct / 100).toFixed(2);
+            const cssString = `background: rgba(255, 255, 255, ${opacity});\nbackdrop-filter: blur(${blur}px);\n-webkit-backdrop-filter: blur(${blur}px);\nborder: 1px solid rgba(255, 255, 255, ${border});\nborder-radius: 15px;`;
+            
+            previewBox.style.cssText = cssString;
+            codeOutput.innerText = `.glass-card {\n  ${cssString.replace(/\n/g, '\n  ')}\n}`;
+        }
 
-            var rgb = hexToRgb(hexColor);
-            var bgCss = 'rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', ' + opacityDec + ')';
-            var backdropCss = 'blur(' + blur + 'px) saturate(160%)';
-            var borderColorCss = (currentMode === 'hybrid')
-                ? 'rgba(45, 212, 191, ' + borderOpacityDec + ')'
-                : 'rgba(255, 255, 255, ' + borderOpacityDec + ')';
-            var borderCss = borderWidth + 'px solid ' + borderColorCss;
+        [blurInput, opacityInput, borderInput].forEach(input => {
+            input.addEventListener('input', updateGenerator);
+        });
+        updateGenerator(); // Init
 
-            var shadowBlur = Math.max(8, shadowDist * 2);
-            var shadowCss = '';
+        // Copy CSS Logic
+        document.getElementById('copy-css').addEventListener('click', (e) => {
+            navigator.clipboard.writeText(codeOutput.innerText);
+            e.target.innerText = 'Copied!';
+            setTimeout(() => e.target.innerText = 'Copy CSS', 2000);
+        });
 
-            if (currentMode === 'neu') {
-                var contrastShift = Math.round((shadowIntensityPct / 100) * 34);
-                var darkShadow = adjustBrightness(rgb, -contrastShift);
-                var lightShadow = adjustBrightness(rgb, contrastShift);
-                shadowCss = shadowDist + 'px ' + shadowDist + 'px ' + shadowBlur + 'px ' + darkShadow + ', ' +
-                            (-shadowDist) + 'px ' + (-shadowDist) + 'px ' + shadowBlur + 'px ' + lightShadow;
-                if (glowSpread > 0) {
-                    shadowCss += ', 0 0 ' + glowSpread + 'px rgba(45, 212, 191, 0.22)';
-                }
-            } else if (currentMode === 'hybrid') {
-                shadowCss = '0 ' + shadowDist + 'px ' + shadowBlur + 'px rgba(0, 0, 0, ' + shadowAlpha + '), ' +
-                            '0 0 ' + glowSpread + 'px rgba(45, 212, 191, 0.32)';
-            } else {
-                shadowCss = '0 ' + shadowDist + 'px ' + shadowBlur + 'px rgba(0, 0, 0, ' + shadowAlpha + ')';
-                if (glowSpread > 0) {
-                    shadowCss += ', 0 0 ' + glowSpread + 'px rgba(45, 212, 191, 0.16)';
-                }
+        // --- COFFEE MODAL LOGIC ---
+        const coffeeBtn = document.getElementById('coffee-btn');
+        const coffeeModal = document.getElementById('coffee-modal');
+        const closeModal = document.getElementById('close-modal');
+        const copyIbanBtn = document.getElementById('copy-iban-btn');
+        const ibanText = "PK77NAYA1234503361901333";
+
+        // Open Modal
+        coffeeBtn.addEventListener('click', () => {
+            coffeeModal.classList.add('active');
+        });
+
+        // Close Modal via button or clicking outside
+        closeModal.addEventListener('click', () => coffeeModal.classList.remove('active'));
+        coffeeModal.addEventListener('click', (e) => {
+            if (e.target === coffeeModal) {
+                coffeeModal.classList.remove('active');
             }
+        });
 
-            var target = document.getElementById('livePreviewTarget');
-            target.style.background = bgCss;
-            target.style.backdropFilter = (currentMode === 'neu') ? 'none' : backdropCss;
-            target.style.webkitBackdropFilter = (currentMode === 'neu') ? 'none' : backdropCss;
-            target.style.borderRadius = radius + 'px';
-            target.style.border = (borderWidth > 0) ? borderCss : 'none';
-            target.style.boxShadow = shadowCss;
-
-            var cssLines = [];
-            cssLines.push('.black-hat-exe-card {');
-            cssLines.push('  background: ' + bgCss + ';');
-            if (currentMode !== 'neu') {
-                cssLines.push('  backdrop-filter: ' + backdropCss + ';');
-                cssLines.push('  -webkit-backdrop-filter: ' + backdropCss + ';');
-            }
-            cssLines.push('  border-radius: ' + radius + 'px;');
-            if (borderWidth > 0) {
-                cssLines.push('  border: ' + borderCss + ';');
-            }
-            cssLines.push('  box-shadow: ' + shadowCss + ';');
-            cssLines.push('}');
-
-            document.getElementById('cssCodeOutput').textContent = cssLines.join('\n');
-        }
-
-        // Control 10: Switch Background Canvas Style (Cyber Mesh, Neon Orbs, Carbon Grid, Solid Dark)
-        function setStageBg(bgType) {
-            currentCanvas = bgType;
-            var stage = document.getElementById('previewStage');
-            var orbOne = document.getElementById('orbOne');
-            var orbTwo = document.getElementById('orbTwo');
-
-            stage.className = 'preview-stage stage-bg-' + bgType;
-
-            document.getElementById('bgBtnMesh').className = (bgType === 'mesh') ? 'toolbar-btn active' : 'toolbar-btn';
-            document.getElementById('bgBtnOrbs').className = (bgType === 'orbs') ? 'toolbar-btn active' : 'toolbar-btn';
-            document.getElementById('bgBtnGrid').className = (bgType === 'grid') ? 'toolbar-btn active' : 'toolbar-btn';
-            document.getElementById('bgBtnSolid').className = (bgType === 'solid') ? 'toolbar-btn active' : 'toolbar-btn';
-
-            var labels = {
-                mesh: 'Cyber Mesh',
-                orbs: 'Neon Orbs',
-                grid: 'Carbon Grid',
-                solid: 'Solid Dark'
-            };
-            document.getElementById('canvasStyleLabel').textContent = labels[bgType] || 'Neon Orbs';
-
-            if (bgType === 'solid') {
-                orbOne.style.display = 'none';
-                orbTwo.style.display = 'none';
-            } else {
-                orbOne.style.display = 'block';
-                orbTwo.style.display = 'block';
-            }
-        }
-
-        // Switch sample UI elements inside the preview card
-        function setPreviewComponent(compType) {
-            var target = document.getElementById('livePreviewTarget');
-
-            document.getElementById('compBtnCard').className = (compType === 'card') ? 'toolbar-btn active' : 'toolbar-btn';
-            document.getElementById('compBtnForm').className = (compType === 'form') ? 'toolbar-btn active' : 'toolbar-btn';
-            document.getElementById('compBtnButtons').className = (compType === 'buttons') ? 'toolbar-btn active' : 'toolbar-btn';
-
-            if (compType === 'card') {
-                target.innerHTML =
-                    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">' +
-                        '<span style="font-family:var(--font-mono);font-size:0.72rem;color:#2dd4bf;background:rgba(45,212,191,0.14);padding:3px 10px;border-radius:99px;">SYS_NODE // ONLINE</span>' +
-                        '<span style="font-family:var(--font-mono);font-size:0.75rem;color:#94a3b8;">black-hat-exe</span>' +
-                    '</div>' +
-                    '<h3 style="font-size:1.18rem;font-weight:800;margin-bottom:6px;color:#ffffff;">Cyber Telemetry Surface</h3>' +
-                    '<p style="font-size:0.85rem;color:#cbd5e1;margin-bottom:18px;">Fine-tune blur, opacity, glow spread, and shadow intensity using the 10 UX controls on the left.</p>' +
-                    '<div style="display:flex;gap:10px;">' +
-                        '<span style="background:#14b8a6;color:#041214;font-weight:700;font-size:0.78rem;padding:8px 14px;border-radius:7px;">Export CSS</span>' +
-                        '<span style="border:1px solid rgba(255,255,255,0.25);color:#f8fafc;font-size:0.78rem;padding:8px 14px;border-radius:7px;">Inspect Node</span>' +
-                    '</div>';
-            } else if (compType === 'form') {
-                target.innerHTML =
-                    '<h3 style="font-size:1.08rem;font-weight:800;margin-bottom:12px;color:#ffffff;">Operator Authentication</h3>' +
-                    '<div style="margin-bottom:10px;">' +
-                        '<label style="display:block;font-size:0.74rem;color:#cbd5e1;margin-bottom:4px;">Operator ID</label>' +
-                        '<input type="text" value="ertaza@black-hat-exe.corp" readonly style="width:100%;padding:8px 10px;border-radius:6px;background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.18);color:#fff;font-family:var(--font-mono);font-size:0.78rem;">' +
-                    '</div>' +
-                    '<div style="margin-bottom:14px;">' +
-                        '<label style="display:block;font-size:0.74rem;color:#cbd5e1;margin-bottom:4px;">Security Token</label>' +
-                        '<input type="password" value="••••••••••••" readonly style="width:100%;padding:8px 10px;border-radius:6px;background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.18);color:#2dd4bf;font-size:0.78rem;">' +
-                    '</div>' +
-                    '<div style="background:#14b8a6;color:#041214;text-align:center;font-weight:800;font-size:0.8rem;padding:9px;border-radius:7px;">Authorize Session</div>';
-            } else if (compType === 'buttons') {
-                target.innerHTML =
-                    '<h3 style="font-size:1.05rem;font-weight:700;margin-bottom:14px;color:#ffffff;">Interactive Control Deck</h3>' +
-                    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">' +
-                        '<div style="padding:10px;border-radius:8px;background:rgba(20,184,166,0.22);border:1px solid rgba(45,212,191,0.45);text-align:center;font-weight:700;font-size:0.78rem;color:#2dd4bf;">Primary Action</div>' +
-                        '<div style="padding:10px;border-radius:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);text-align:center;font-weight:600;font-size:0.78rem;color:#ffffff;">Secondary</div>' +
-                    '</div>' +
-                    '<div style="padding:9px;border-radius:8px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);font-family:var(--font-mono);font-size:0.74rem;color:#94a3b8;text-align:center;">RENDER: 60FPS GPU COMPOSITED</div>';
-            }
-        }
-
-        // Scroll the horizontal "More by Developer" mini-card track left or right
-        function scrollProjects(direction) {
-            var track = document.getElementById('projectsTrack');
-            var scrollAmount = 390;
-            track.scrollLeft += direction * scrollAmount;
-        }
-
-        // Clipboard helper
-        function copyTextToClipboard(textStr) {
-            var tempInput = document.createElement('textarea');
-            tempInput.value = textStr;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-        }
-
-        // Copy generated CSS code
-        function copyGeneratedCss() {
-            var cssText = document.getElementById('cssCodeOutput').textContent;
-            copyTextToClipboard(cssText);
-
-            var btn = document.getElementById('copyCssBtn');
-            var originalLabel = btn.textContent;
-            btn.textContent = 'Copied!';
-            btn.style.background = '#34d399';
-
-            setTimeout(function () {
-                btn.textContent = originalLabel;
-                btn.style.background = '';
-            }, 1800);
-        }
-
-        // Toggle inline status notice for PinBack Coming Soon card
-        function toggleComingSoon(noticeId) {
-            var box = document.getElementById(noticeId);
-            if (box.style.display === 'block') {
-                box.style.display = 'none';
-            } else {
-                box.style.display = 'block';
-            }
-        }
-
-        // Toggle the subtle, shy financial support drawer
-        function toggleShySupport() {
-            var drawer = document.getElementById('shySupportDrawer');
-            if (drawer.style.display === 'block') {
-                drawer.style.display = 'none';
-            } else {
-                drawer.style.display = 'block';
-            }
-        }
-
-        // Copy tool URL from the subtle support widget
-        function copyShareLink() {
-            copyTextToClipboard(window.location.href);
-            var btn = document.getElementById('shyShareBtn');
-            btn.textContent = 'Link Copied!';
-            setTimeout(function () {
-                btn.textContent = 'Copy Link to Share';
-            }, 1800);
-        }
-
-        // Initialize generator on load
-        window.onload = function () {
-            setPreviewComponent('card');
-            updateGenerator();
-        };
+        // Copy IBAN
+        copyIbanBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(ibanText).then(() => {
+                copyIbanBtn.innerText = "Copied successfully!";
+                copyIbanBtn.style.background = "#1dbf73";
+                setTimeout(() => {
+                    copyIbanBtn.innerText = "Copy IBAN";
+                    copyIbanBtn.style.background = "#2ea043";
+                }, 2000);
+            });
+        });
     </script>
 </body>
 </html>
