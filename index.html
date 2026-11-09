@@ -876,7 +876,7 @@
         }
 
         /* ==========================================================================
-           7. SUBTLE, SHY "SUPPORT US FINANCIALLY" SIDE WIDGET & FOOTER
+           7. DEVELOPER ACTIONS WIDGET & FOOTER
            ========================================================================== */
         .bottom-meta-row {
             margin-top: 44px;
@@ -932,7 +932,7 @@
             transform: scale(1.15);
         }
 
-        .shy-support-trigger {
+        .dev-actions-trigger {
             background: rgba(13, 20, 33, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.08);
             color: #94a3b8;
@@ -947,13 +947,13 @@
             transition: all 0.2s ease;
         }
 
-        .shy-support-trigger:hover {
+        .dev-actions-trigger:hover {
             color: #cbd5e1;
             border-color: rgba(148, 163, 184, 0.35);
             background: rgba(15, 23, 38, 0.85);
         }
 
-        .shy-support-drawer {
+        .dev-actions-drawer {
             display: none;
             margin-top: 10px;
             background: rgba(13, 20, 33, 0.92);
@@ -967,14 +967,14 @@
             max-width: 100vw;
         }
 
-        .shy-support-actions {
+        .dev-actions-list {
             display: flex;
             gap: 8px;
             margin-top: 10px;
             flex-wrap: wrap;
         }
 
-        .shy-mini-btn {
+        .action-mini-btn {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(148, 163, 184, 0.25);
             color: #cbd5e1;
@@ -990,7 +990,7 @@
             transition: all 0.18s ease;
         }
 
-        .shy-mini-btn:hover {
+        .action-mini-btn:hover {
             border-color: var(--accent-neon);
             color: #ffffff;
         }
@@ -1005,61 +1005,157 @@
         }
 
         /* ==========================================================================
-           8. MOBILE RESPONSIVENESS FIXES (Appended to stop grid/header blowout)
+           8. FLOATING COFFEE WIDGET (Like a Chat Button)
+           ========================================================================== */
+        .floating-coffee-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--accent-cyan);
+            color: #041214;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 99px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.4);
+            z-index: 1000;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .floating-coffee-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(20, 184, 166, 0.6);
+            background: var(--accent-neon);
+        }
+
+        .coffee-popup {
+            position: fixed;
+            bottom: 80px;
+            right: 24px;
+            background: rgba(13, 20, 33, 0.95);
+            border: 1px solid rgba(45, 212, 191, 0.3);
+            border-radius: 12px;
+            padding: 16px;
+            width: 320px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .coffee-popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .coffee-popup-header h4 {
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .coffee-popup-header button {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .coffee-popup-header button:hover {
+            color: #fff;
+        }
+
+        .coffee-popup p {
+            color: #cbd5e1;
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+        }
+
+        .iban-copy-box {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .iban-copy-box code {
+            flex: 1;
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 6px;
+            color: #2dd4bf;
+            font-size: 0.75rem;
+            word-break: break-all;
+            font-family: var(--font-mono);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .iban-copy-btn {
+            background: var(--accent-cyan);
+            color: #041214;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .iban-copy-btn:hover {
+            background: var(--accent-neon);
+        }
+
+        /* ==========================================================================
+           9. MOBILE RESPONSIVENESS FIXES
            ========================================================================== */
         @media (max-width: 768px) {
             body { max-width: 100vw; overflow-x: hidden; }
-            
-            /* Clean up the header wrapping issue */
             .site-header { padding: 10px 15px; }
             .header-container { flex-direction: column; gap: 12px; justify-content: center; text-align: center; }
             .nav-links { justify-content: center; width: 100%; }
             .nav-link { font-size: 0.8rem; padding: 6px 10px; }
-            
-            /* Scale down massive hero text */
             .hero-title { font-size: 1.8rem; line-height: 1.2; }
-            
-            /* Break the 2-column grid to stop horizontal scroll blowout */
             .generator-grid { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 100vw; }
-            
-            /* Prevent panels from exceeding the screen width */
             .panel-card { padding: 16px; width: 100%; max-width: 100%; box-sizing: border-box; }
-            
-            /* Make sliders fit securely */
             .sliders-container input[type="range"] { width: 100%; }
-            
-            /* Prevent code box overflow */
             pre.css-code-block { font-size: 0.75rem; padding: 12px; white-space: pre-wrap; word-break: break-all; }
-            
-            /* Reduce preview stage height slightly */
             .preview-stage { min-height: 250px; padding: 15px; }
+            
+            /* Floating Widget Adjustments */
+            .floating-coffee-btn { bottom: 16px; right: 16px; padding: 10px 16px; font-size: 0.85rem; }
+            .coffee-popup { bottom: 70px; right: 16px; width: calc(100vw - 32px); max-width: 320px; }
         }
     </style>
 </head>
 <body>
 
     <!-- ==========================================================================
-         1. HEADER (OFFICIAL "black-hat-exe CORP." 3D METALLIC & NAVY LOGO)
+         1. HEADER
          ========================================================================== -->
     <header class="site-header">
         <div class="header-container">
             <a href="#" class="brand-wrap">
-                <!-- Recreated 3D Metallic Silver & Deep Navy Geometric Hat/Shield Emblem -->
                 <svg class="brand-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <defs>
-                        <!-- Brushed Bright Silver Gradient (Left Highlight Facets) -->
                         <linearGradient id="silverBright" x1="15%" y1="10%" x2="85%" y2="90%">
                             <stop offset="0%" stop-color="#FFFFFF"/>
                             <stop offset="55%" stop-color="#CBD5E1"/>
                             <stop offset="100%" stop-color="#94A3B8"/>
                         </linearGradient>
-                        <!-- Medium Metallic Steel Gradient (Right & Wing Facets) -->
                         <linearGradient id="silverSteel" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" stop-color="#94A3B8"/>
                             <stop offset="60%" stop-color="#64748B"/>
                             <stop offset="100%" stop-color="#334155"/>
                         </linearGradient>
-                        <!-- Deep Navy Core Gradient (Recessed Right & Visor Facets) -->
                         <linearGradient id="navyCore" x1="20%" y1="0%" x2="80%" y2="100%">
                             <stop offset="0%" stop-color="#1E3A6D"/>
                             <stop offset="50%" stop-color="#0F2347"/>
@@ -1067,31 +1163,17 @@
                         </linearGradient>
                     </defs>
 
-                    <!-- TOP CROWN: Left Brushed Silver Fedora Peak (M-indent top) -->
                     <polygon points="35,12 50,21 50,15 34,8 23,36 49,43 49,21" fill="url(#silverBright)"/>
-                    <!-- TOP CROWN: Right Deep Navy Recessed Fold -->
                     <polygon points="50,21 63,13 66,40 49,43" fill="url(#navyCore)"/>
-                    <!-- TOP CROWN: Right Metallic Silver Outer Ridge -->
                     <polygon points="65,8 50,15 50,21 63,13 66,40 49,43 49,48 72,42 77,36" fill="url(#silverSteel)"/>
-
-                    <!-- MIDDLE BRIM: Left Sharp Horizontal Wing -->
                     <polygon points="6,47 23,36 33,51 28,60" fill="url(#silverBright)"/>
-                    <!-- MIDDLE BRIM: Right Sharp Horizontal Wing -->
                     <polygon points="94,47 77,36 67,51 72,60" fill="url(#silverSteel)"/>
-                    <!-- MIDDLE VISOR: Deep Navy Curved Brow Band -->
                     <polygon points="24,42 50,48 76,42 71,52 50,57 29,52" fill="url(#navyCore)"/>
-                    <!-- MIDDLE VISOR: Silver Highlight Rim Under Visor -->
                     <polygon points="27,52 50,58 73,52 68,57 50,62 32,57" fill="url(#silverBright)"/>
-
-                    <!-- LOWER SHIELD: Left & Right Outer Metallic Cheek Guards -->
                     <polygon points="28,65 34,62 47,87 28,74" fill="url(#silverBright)"/>
                     <polygon points="72,65 66,62 53,87 72,74" fill="url(#silverSteel)"/>
-
-                    <!-- LOWER SHIELD: Center V-Mask Deep Navy Inner Cutout -->
                     <polygon points="33,57 50,62 67,57 50,70" fill="url(#navyCore)"/>
-                    <!-- LOWER SHIELD: Center Sharp V-Point (Left Bright Silver Facet) -->
                     <polygon points="32,58 50,70 50,94" fill="url(#silverBright)"/>
-                    <!-- LOWER SHIELD: Center Sharp V-Point (Right Deep Navy Facet) -->
                     <polygon points="68,58 50,70 50,94" fill="url(#navyCore)"/>
                 </svg>
 
@@ -1105,14 +1187,12 @@
                 <a href="#generator-workspace" class="nav-link">UI Generator</a>
                 <a href="#more-by-developer" class="nav-link">More by Developer</a>
                 <a href="https://github.com/black-hat-exe" target="_blank" rel="noopener noreferrer" class="nav-link">
-                    <!-- GitHub Octocat Inline SVG -->
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
                     </svg>
                     GitHub
                 </a>
                 <a href="https://www.fiverr.com/syed_m_ertaza" target="_blank" rel="noopener noreferrer" class="nav-link nav-link-fiverr">
-                    <!-- Official Fiverr "fi" Badge Inline SVG -->
                     <svg width="18" height="18" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <circle cx="14" cy="14" r="14" fill="#1DBF73"/>
                         <path d="M12.2 11.4H10.3V10.1C10.3 9.4 10.7 9.1 11.4 9.1H12.3V6.9H10.9C8.7 6.9 7.6 8.1 7.6 10.1V11.4H6.1V13.6H7.6V19.5H10.3V13.6H12.2V11.4ZM17.6 11.4H14.9V19.5H17.6V11.4ZM16.25 6.7C15.35 6.7 14.65 7.4 14.65 8.25C14.65 9.1 15.35 9.8 16.25 9.8C17.15 9.8 17.85 9.1 17.85 8.25C17.85 7.4 17.15 6.7 16.25 6.7Z" fill="#FFFFFF"/>
@@ -1125,7 +1205,7 @@
     </header>
 
     <!-- ==========================================================================
-         2. MAIN UI GENERATOR WORKSPACE (10 GRANULAR CONTROLS & 3 MODES)
+         2. MAIN UI GENERATOR WORKSPACE
          ========================================================================== -->
     <main class="main-container" id="generator-workspace">
         <div class="hero-banner">
@@ -1163,7 +1243,6 @@
 
                 <!-- 10 Granular UX Controls -->
                 <div class="sliders-container">
-                    <!-- 1. Blur (px) -->
                     <div class="control-item">
                         <div class="control-top">
                             <label for="blurRange">1. Blur (px)</label>
@@ -1172,7 +1251,6 @@
                         <input type="range" id="blurRange" min="0" max="40" step="1" value="16" oninput="updateGenerator()">
                     </div>
 
-                    <!-- 2. Opacity (%) -->
                     <div class="control-item">
                         <div class="control-top">
                             <label for="opacityRange">2. Opacity (%)</label>
@@ -1181,7 +1259,6 @@
                         <input type="range" id="opacityRange" min="2" max="100" step="1" value="24" oninput="updateGenerator()">
                     </div>
 
-                    <!-- 3. Border Width (px) -->
                     <div class="control-item">
                         <div class="control-top">
                             <label for="borderWidthRange">3. Border Width (px)</label>
@@ -1190,7 +1267,6 @@
                         <input type="range" id="borderWidthRange" min="0" max="6" step="1" value="1" oninput="updateGenerator()">
                     </div>
 
-                    <!-- 4. Border Opacity (%) -->
                     <div class="control-item">
                         <div class="control-top">
                             <label for="borderOpacityRange">4. Border Opacity (%)</label>
@@ -1199,7 +1275,6 @@
                         <input type="range" id="borderOpacityRange" min="0" max="100" step="2" value="28" oninput="updateGenerator()">
                     </div>
 
-                    <!-- 5. Border Radius (px) -->
                     <div class="control-item">
                         <div class="control-top">
                             <label for="radiusRange">5. Border Radius (px)</label>
@@ -1208,7 +1283,6 @@
                         <input type="range" id="radiusRange" min="0" max="48" step="1" value="18" oninput="updateGenerator()">
                     </div>
 
-                    <!-- 6. Shadow Distance (px) -->
                     <div class="control-item">
                         <div class="control-top">
                             <label for="shadowDistRange">6. Shadow Distance (px)</label>
@@ -1217,7 +1291,6 @@
                         <input type="range" id="shadowDistRange" min="0" max="40" step="1" value="12" oninput="updateGenerator()">
                     </div>
 
-                    <!-- 7. Shadow Intensity (%) -->
                     <div class="control-item">
                         <div class="control-top">
                             <label for="shadowIntensityRange">7. Shadow Intensity (%)</label>
@@ -1226,7 +1299,6 @@
                         <input type="range" id="shadowIntensityRange" min="0" max="95" step="1" value="45" oninput="updateGenerator()">
                     </div>
 
-                    <!-- 8. Glow Spread (px) -->
                     <div class="control-item">
                         <div class="control-top">
                             <label for="glowSpreadRange">8. Glow Spread (px)</label>
@@ -1235,7 +1307,6 @@
                         <input type="range" id="glowSpreadRange" min="0" max="50" step="1" value="14" oninput="updateGenerator()">
                     </div>
 
-                    <!-- 9. Card Tint Color Picker -->
                     <div class="control-item">
                         <div class="color-row">
                             <label for="surfaceColor" style="font-size:0.81rem;font-weight:500;">9. Card Tint Color</label>
@@ -1246,7 +1317,6 @@
                         </div>
                     </div>
 
-                    <!-- 10. Background Canvas Style Toggle -->
                     <div class="control-item">
                         <div class="control-top">
                             <span>10. Background Canvas Style</span>
@@ -1274,16 +1344,12 @@
                     <span class="control-val">Real-Time CSS3 Engine</span>
                 </div>
 
-                <!-- Live Visual Preview Stage -->
                 <div id="previewStage" class="preview-stage stage-bg-orbs">
                     <div id="orbOne" class="stage-orb-one"></div>
                     <div id="orbTwo" class="stage-orb-two"></div>
-
-                    <!-- Dynamic Target Component -->
                     <div id="livePreviewTarget"></div>
                 </div>
 
-                <!-- Generated CSS Code Output Box -->
                 <div class="code-output-wrapper">
                     <div class="code-header">
                         <span class="code-title">
@@ -1296,7 +1362,6 @@
                     <pre class="css-code-block"><code id="cssCodeOutput"></code></pre>
                 </div>
 
-                <!-- Embedded Fiverr Conversion Funnel Banner with Official Fiverr SVG Badge -->
                 <div class="fiverr-funnel-banner">
                     <div class="funnel-text">
                         <h3>Need a complete Figma design converted into custom responsive HTML, CSS &amp; JS?</h3>
@@ -1315,7 +1380,7 @@
         </div>
 
         <!-- ==========================================================================
-             3. "MORE BY DEVELOPER" — SINGLE-LINE HORIZONTAL SCROLLABLE MINI-CARDS
+             3. "MORE BY DEVELOPER" — HORIZONTAL SCROLLABLE MINI-CARDS
              ========================================================================== -->
         <section id="more-by-developer" class="section-block">
             <div class="section-heading-wrap">
@@ -1329,9 +1394,7 @@
                 </div>
             </div>
 
-            <!-- Horizontal Scrollable Track -->
             <div id="projectsTrack" class="projects-track">
-                <!-- Mini-Card 1: Cloud Infrastructure Dashboard (LIVE) -->
                 <a href="https://black-hat-exe.github.io/Cloud-Infrastructure-Dashboard/" target="_blank" rel="noopener noreferrer" class="mini-project-card">
                     <div>
                         <div class="mini-card-top">
@@ -1343,56 +1406,53 @@
                         </p>
                     </div>
                     <div class="mini-card-footer">
-                    <div class="tech-tags">
-                        <span class="tech-tag">CSS Animations</span>
-                        <span class="tech-tag">Vanilla JS</span>
+                        <div class="tech-tags">
+                            <span class="tech-tag">CSS Animations</span>
+                            <span class="tech-tag">Vanilla JS</span>
+                        </div>
+                        <span class="mini-card-link">Open Live &rarr;</span>
                     </div>
-                    <span class="mini-card-link">Open Live &rarr;</span>
-                </div>
-            </a>
+                </a>
 
-            <!-- Mini-Card 2: Birthday-wish (LIVE) -->
-            <a href="https://black-hat-exe.github.io/Birthday-wish/#" target="_blank" rel="noopener noreferrer" class="mini-project-card">
-                <div>
-                    <div class="mini-card-top">
-                        <h3 class="mini-card-title">Interactive Birthday Wish</h3>
-                        <span class="badge-live"><span class="pulse-dot"></span> LIVE</span>
+                <a href="https://black-hat-exe.github.io/Birthday-wish/#" target="_blank" rel="noopener noreferrer" class="mini-project-card">
+                    <div>
+                        <div class="mini-card-top">
+                            <h3 class="mini-card-title">Interactive Birthday Wish</h3>
+                            <span class="badge-live"><span class="pulse-dot"></span> LIVE</span>
+                        </div>
+                        <p class="mini-card-desc">
+                            A personalized, fully interactive web experience featuring custom animations, 3D elements, and responsive celebratory UI.
+                        </p>
                     </div>
-                    <p class="mini-card-desc">
-                        A personalized, fully interactive web experience featuring custom animations, 3D elements, and responsive celebratory UI.
-                    </p>
-                </div>
-                <div class="mini-card-footer">
-                    <div class="tech-tags">
-                        <span class="tech-tag">Animations</span>
-                        <span class="tech-tag">UI/UX</span>
+                    <div class="mini-card-footer">
+                        <div class="tech-tags">
+                            <span class="tech-tag">Animations</span>
+                            <span class="tech-tag">UI/UX</span>
+                        </div>
+                        <span class="mini-card-link">Open Live &rarr;</span>
                     </div>
-                    <span class="mini-card-link">Open Live &rarr;</span>
-                </div>
-            </a>
+                </a>
 
-            <!-- Mini-Card 3: Official Portfolio (LIVE) -->
-            <a href="https://black-hat-exe.github.io/Portfolio/" target="_blank" rel="noopener noreferrer" class="mini-project-card">
-                <div>
-                    <div class="mini-card-top">
-                        <h3 class="mini-card-title">Official Portfolio</h3>
-                        <span class="badge-live"><span class="pulse-dot"></span> LIVE</span>
+                <a href="https://black-hat-exe.github.io/Portfolio/" target="_blank" rel="noopener noreferrer" class="mini-project-card">
+                    <div>
+                        <div class="mini-card-top">
+                            <h3 class="mini-card-title">Official Portfolio</h3>
+                            <span class="badge-live"><span class="pulse-dot"></span> LIVE</span>
+                        </div>
+                        <p class="mini-card-desc">
+                            The central hub for all my custom frontend architecture, freelance UI/UX services, and professional IT case studies.
+                        </p>
                     </div>
-                    <p class="mini-card-desc">
-                        The central hub for all my custom frontend architecture, freelance UI/UX services, and professional IT case studies.
-                    </p>
-                </div>
-                <div class="mini-card-footer">
-                    <div class="tech-tags">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">Responsive UI</span>
+                    <div class="mini-card-footer">
+                        <div class="tech-tags">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">Responsive UI</span>
+                        </div>
+                        <span class="mini-card-link">Open Live &rarr;</span>
                     </div>
-                    <span class="mini-card-link">Open Live &rarr;</span>
-                </div>
-            </a>
+                </a>
 
-            <!-- Mini-Card 4: PinBack QR Lost & Found (COMING SOON) -->
-            <div class="mini-project-card" onclick="toggleComingSoon('pinbackNotice')">
+                <div class="mini-project-card" onclick="toggleComingSoon('pinbackNotice')">
                     <div>
                         <div class="mini-card-top">
                             <h3 class="mini-card-title">PinBack — QR Lost &amp; Found</h3>
@@ -1417,10 +1477,9 @@
         </section>
 
         <!-- ==========================================================================
-             4. SOCIAL BAR & SUBTLE, SHY "SUPPORT US FINANCIALLY" SIDE WIDGET
+             4. SOCIAL BAR & DEVELOPER ACTIONS WIDGET
              ========================================================================== -->
         <div class="bottom-meta-row">
-            <!-- Official Platform & Social Links with Crisp SVGs -->
             <div class="social-bar">
                 <a href="https://www.fiverr.com/syed_m_ertaza" target="_blank" rel="noopener noreferrer" class="social-pill">
                     <svg width="16" height="16" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1438,7 +1497,6 @@
                 </a>
 
                 <a href="https://www.upwork.com/" target="_blank" rel="noopener noreferrer" class="social-pill">
-                    <!-- Upwork Vector Icon -->
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="#14a800">
                         <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.548-1.405-.002-2.543-1.143-2.545-2.548V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z"/>
                     </svg>
@@ -1446,35 +1504,25 @@
                 </a>
             </div>
 
-            <!-- Quiet, Humble Side Widget for Financial Support -->
-            <div class="shy-support-wrapper">
-                <button type="button" class="shy-support-trigger" onclick="toggleShySupport()">
-                    <span>&#9749;</span> Support Indie Work (Optional)
+            <!-- Developer Actions Widget -->
+            <div class="dev-actions-wrapper">
+                <button type="button" class="dev-actions-trigger" onclick="toggleDevActions()">
+                    <span>&#9881;</span> Developer Actions
                 </button>
-                <div id="shySupportDrawer" class="shy-support-drawer">
+                <div id="devActionsDrawer" class="dev-actions-drawer">
                     <p style="margin-bottom:6px;color:#cbd5e1;font-weight:600;">Thanks for checking this out!</p>
-                    <p>I build these free UI tools alongside my IT studies. Zero pressure at all—just using or sharing the generator helps a lot. If you ever want to support my indie builds financially:</p>
-                    <div class="shy-support-actions">
-                        <a href="https://www.fiverr.com/syed_m_ertaza" target="_blank" rel="noopener noreferrer" class="shy-mini-btn">
-                            Order a Small Task / Tip on Fiverr &rarr;
+                    <p>I build these free UI tools alongside my IT studies. If you ever want to support my indie builds financially or request custom work:</p>
+                    <div class="dev-actions-list">
+                        <a href="https://www.fiverr.com/syed_m_ertaza" target="_blank" rel="noopener noreferrer" class="action-mini-btn">
+                            Order a Task / Tip on Fiverr &rarr;
                         </a>
-                        <button type="button" class="shy-mini-btn" onclick="toggleIbanBox()">
-                            ☕ Buy Me a Coffee (NayaPay)
-                        </button>
-                        <button type="button" id="shyShareBtn" class="shy-mini-btn" onclick="copyShareLink()">
+                        <a href="mailto:contact.ertaza@gmail.com" class="action-mini-btn">
+                            &#9993; Email Support
+                        </a>
+                        <button type="button" id="shareBtn" class="action-mini-btn" onclick="copyShareLink()">
                             Copy Link to Share
                         </button>
                     </div>
-                    
-                    <!-- Secure NayaPay IBAN Dropdown Box -->
-                    <div id="nayapayIbanBox" style="display:none; margin-top: 12px; background: rgba(0,0,0,0.4); border: 1px solid rgba(45, 212, 191, 0.3); border-radius: 8px; padding: 12px;">
-                        <p style="font-size: 0.75rem; color: #cbd5e1; margin-bottom: 6px;">NayaPay IBAN (Syed Muhammad Ertaza):</p>
-                        <div style="display: flex; gap: 8px; align-items: center;">
-                            <code style="flex: 1; font-family: var(--font-mono); font-size: 0.85rem; color: #2dd4bf; background: rgba(0,0,0,0.5); padding: 6px 10px; border-radius: 4px; word-break: break-all;">PK77NAYA1234503361901333</code>
-                            <button type="button" id="copyIbanBtn" class="shy-mini-btn" onclick="copyIban()" style="margin:0;">Copy</button>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -1484,17 +1532,34 @@
          5. FOOTER
          ========================================================================== -->
     <footer class="site-footer">
-        <p>black-hat-exe CORP. &copy; 2026 | Engineered by Syed Muhammad Ertaza (M. Ertaza)</p>
+        <p>black-hat-exe CORP. &copy; 2026 | Engineered by Syed Muhammad Ertaza (M. Ertaza) | <a href="mailto:contact.ertaza@gmail.com" style="color:var(--accent-neon);text-decoration:none;">Support</a></p>
     </footer>
 
     <!-- ==========================================================================
-         6. CLEAN VANILLA JAVASCRIPT (NAMED FUNCTIONS, STANDARD DOM MANIPULATION)
+         FLOATING COFFEE WIDGET (Chat-style button)
+         ========================================================================== -->
+    <button class="floating-coffee-btn" onclick="toggleCoffeePopup()">
+        ☕ Buy Me a Coffee
+    </button>
+    <div id="coffeePopup" class="coffee-popup">
+        <div class="coffee-popup-header">
+            <h4>Support the Developer</h4>
+            <button onclick="toggleCoffeePopup()">✕</button>
+        </div>
+        <p>NayaPay IBAN (Syed Muhammad Ertaza):</p>
+        <div class="iban-copy-box">
+            <code>PK77NAYA1234503361901333</code>
+            <button id="floatingCopyBtn" class="iban-copy-btn" onclick="copyFloatingIban()">Copy</button>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         6. CLEAN VANILLA JAVASCRIPT
          ========================================================================== -->
     <script>
         var currentMode = 'glass';
         var currentCanvas = 'orbs';
 
-        // Convert 6-digit hex color (#RRGGBB) to {r, g, b}
         function hexToRgb(hex) {
             var cleanHex = hex.replace('#', '');
             var r = parseInt(cleanHex.substring(0, 2), 16);
@@ -1503,12 +1568,10 @@
             return { r: r, g: g, b: b };
         }
 
-        // Clamp RGB channel between 0 and 255
         function clampChannel(val) {
             return Math.max(0, Math.min(255, Math.round(val)));
         }
 
-        // Lighten or darken RGB color for Neumorphic dual shadows
         function adjustBrightness(rgb, factor) {
             var r = clampChannel(rgb.r + factor);
             var g = clampChannel(rgb.g + factor);
@@ -1516,10 +1579,8 @@
             return 'rgb(' + r + ', ' + g + ', ' + b + ')';
         }
 
-        // Switch between Glassmorphism, Neumorphism, and Cyber Hybrid
         function setMode(modeName) {
             currentMode = modeName;
-
             document.getElementById('modeGlass').className = (modeName === 'glass') ? 'mode-btn active' : 'mode-btn';
             document.getElementById('modeNeu').className = (modeName === 'neu') ? 'mode-btn active' : 'mode-btn';
             document.getElementById('modeHybrid').className = (modeName === 'hybrid') ? 'mode-btn active' : 'mode-btn';
@@ -1541,11 +1602,9 @@
                 document.getElementById('glowSpreadRange').value = 22;
                 setStageBg('grid');
             }
-
             updateGenerator();
         }
 
-        // Apply quick presets
         function applyPreset(presetName) {
             if (presetName === 'frost' || presetName === 'reset') {
                 currentMode = 'glass';
@@ -1604,7 +1663,6 @@
             updateGenerator();
         }
 
-        // Read all 10 controls, update UI badges, style preview card, and generate CSS code
         function updateGenerator() {
             var blur = parseInt(document.getElementById('blurRange').value, 10);
             var opacityPct = parseInt(document.getElementById('opacityRange').value, 10);
@@ -1616,7 +1674,6 @@
             var glowSpread = parseInt(document.getElementById('glowSpreadRange').value, 10);
             var hexColor = document.getElementById('surfaceColor').value;
 
-            // Update value labels
             document.getElementById('blurVal').textContent = blur + 'px';
             document.getElementById('opacityVal').textContent = opacityPct + '%';
             document.getElementById('borderWidthVal').textContent = borderWidth + 'px';
@@ -1686,7 +1743,6 @@
             document.getElementById('cssCodeOutput').textContent = cssLines.join('\n');
         }
 
-        // Control 10: Switch Background Canvas Style (Cyber Mesh, Neon Orbs, Carbon Grid, Solid Dark)
         function setStageBg(bgType) {
             currentCanvas = bgType;
             var stage = document.getElementById('previewStage');
@@ -1700,12 +1756,7 @@
             document.getElementById('bgBtnGrid').className = (bgType === 'grid') ? 'toolbar-btn active' : 'toolbar-btn';
             document.getElementById('bgBtnSolid').className = (bgType === 'solid') ? 'toolbar-btn active' : 'toolbar-btn';
 
-            var labels = {
-                mesh: 'Cyber Mesh',
-                orbs: 'Neon Orbs',
-                grid: 'Carbon Grid',
-                solid: 'Solid Dark'
-            };
+            var labels = { mesh: 'Cyber Mesh', orbs: 'Neon Orbs', grid: 'Carbon Grid', solid: 'Solid Dark' };
             document.getElementById('canvasStyleLabel').textContent = labels[bgType] || 'Neon Orbs';
 
             if (bgType === 'solid') {
@@ -1717,7 +1768,6 @@
             }
         }
 
-        // Switch sample UI elements inside the preview card
         function setPreviewComponent(compType) {
             var target = document.getElementById('livePreviewTarget');
 
@@ -1760,14 +1810,12 @@
             }
         }
 
-        // Scroll the horizontal "More by Developer" mini-card track left or right
         function scrollProjects(direction) {
             var track = document.getElementById('projectsTrack');
             var scrollAmount = 390;
             track.scrollLeft += direction * scrollAmount;
         }
 
-        // Clipboard helper
         function copyTextToClipboard(textStr) {
             var tempInput = document.createElement('textarea');
             tempInput.value = textStr;
@@ -1777,78 +1825,55 @@
             document.body.removeChild(tempInput);
         }
 
-        // Copy generated CSS code
         function copyGeneratedCss() {
             var cssText = document.getElementById('cssCodeOutput').textContent;
             copyTextToClipboard(cssText);
-
             var btn = document.getElementById('copyCssBtn');
             var originalLabel = btn.textContent;
             btn.textContent = 'Copied!';
             btn.style.background = '#34d399';
-
             setTimeout(function () {
                 btn.textContent = originalLabel;
                 btn.style.background = '';
             }, 1800);
         }
 
-        // Toggle inline status notice for PinBack Coming Soon card
         function toggleComingSoon(noticeId) {
             var box = document.getElementById(noticeId);
-            if (box.style.display === 'block') {
-                box.style.display = 'none';
-            } else {
-                box.style.display = 'block';
-            }
+            box.style.display = (box.style.display === 'block') ? 'none' : 'block';
         }
 
-        // Toggle the subtle, shy financial support drawer
-        function toggleShySupport() {
-            var drawer = document.getElementById('shySupportDrawer');
-            if (drawer.style.display === 'block') {
-                drawer.style.display = 'none';
-            } else {
-                drawer.style.display = 'block';
-            }
+        function toggleDevActions() {
+            var drawer = document.getElementById('devActionsDrawer');
+            drawer.style.display = (drawer.style.display === 'block') ? 'none' : 'block';
         }
 
-        // Toggle secure NayaPay IBAN Box
-        function toggleIbanBox() {
-            var box = document.getElementById('nayapayIbanBox');
-            if (box.style.display === 'block') {
-                box.style.display = 'none';
-            } else {
-                box.style.display = 'block';
-            }
+        // Floating Coffee Widget Logic
+        function toggleCoffeePopup() {
+            var popup = document.getElementById('coffeePopup');
+            popup.style.display = (popup.style.display === 'block') ? 'none' : 'block';
         }
 
-        // Copy NayaPay IBAN
-        function copyIban() {
+        function copyFloatingIban() {
             copyTextToClipboard("PK77NAYA1234503361901333");
-            var btn = document.getElementById('copyIbanBtn');
+            var btn = document.getElementById('floatingCopyBtn');
             btn.textContent = 'Copied!';
-            btn.style.borderColor = '#34d399';
-            btn.style.color = '#34d399';
-            
+            btn.style.background = '#34d399';
             setTimeout(function () {
                 btn.textContent = 'Copy';
-                btn.style.borderColor = '';
-                btn.style.color = '';
+                btn.style.background = 'var(--accent-cyan)';
             }, 2000);
         }
 
-        // Copy tool URL from the subtle support widget
         function copyShareLink() {
             copyTextToClipboard(window.location.href);
-            var btn = document.getElementById('shyShareBtn');
+            var btn = document.getElementById('shareBtn');
             btn.textContent = 'Link Copied!';
             setTimeout(function () {
                 btn.textContent = 'Copy Link to Share';
             }, 1800);
         }
 
-        // Initialize generator on load
         window.onload = function () {
             setPreviewComponent('card');
             updateGenerator();
